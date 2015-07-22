@@ -8,10 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		AD97DBEB1B5F2BB7003B864F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBEA1B5F2BB7003B864F /* main.m */; };
-		AD97DBEE1B5F2BB7003B864F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBED1B5F2BB7003B864F /* AppDelegate.m */; };
-		AD97DBF01B5F2BB7003B864F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD97DBEF1B5F2BB7003B864F /* Images.xcassets */; };
-		AD97DBF31B5F2BB7003B864F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD97DBF11B5F2BB7003B864F /* LaunchScreen.xib */; };
 		AD97DBFF1B5F2BB7003B864F /* QMClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBFE1B5F2BB7003B864F /* QMClientTests.m */; };
+		AD97DC211B5F3A24003B864F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC1B1B5F3A24003B864F /* AppDelegate.m */; };
+		AD97DC221B5F3A24003B864F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD97DC1C1B5F3A24003B864F /* LaunchScreen.xib */; };
+		AD97DC231B5F3A24003B864F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD97DC1E1B5F3A24003B864F /* Images.xcassets */; };
+		AD97DC2C1B5F3C15003B864F /* QMTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC2B1B5F3C15003B864F /* QMTabbarController.m */; };
+		AD97DC2E1B5F3DF3003B864F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD97DC2D1B5F3DF3003B864F /* Info.plist */; };
+		AD97DC311B5F3E51003B864F /* QMRegisterAndLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC301B5F3E51003B864F /* QMRegisterAndLoginController.m */; };
+		AD97DC341B5F3F87003B864F /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC331B5F3F87003B864F /* QMHomeViewController.m */; };
+		AD97DC3A1B5F3FF3003B864F /* QMMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC391B5F3FF3003B864F /* QMMeViewController.m */; };
+		AD97DC411B5F438A003B864F /* QMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC401B5F438A003B864F /* QMNavigationController.m */; };
+		AD97DC951B5F6851003B864F /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC7C1B5F6851003B864F /* MASCompositeConstraint.m */; };
+		AD97DC961B5F6851003B864F /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC7F1B5F6851003B864F /* MASConstraint.m */; };
+		AD97DC971B5F6851003B864F /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC811B5F6851003B864F /* MASConstraintMaker.m */; };
+		AD97DC981B5F6851003B864F /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC831B5F6851003B864F /* MASLayoutConstraint.m */; };
+		AD97DC991B5F6851003B864F /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC871B5F6851003B864F /* MASViewAttribute.m */; };
+		AD97DC9A1B5F6851003B864F /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC891B5F6851003B864F /* MASViewConstraint.m */; };
+		AD97DC9B1B5F6851003B864F /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC8B1B5F6851003B864F /* NSArray+MASAdditions.m */; };
+		AD97DC9C1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC8E1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		AD97DC9D1B5F6851003B864F /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC901B5F6851003B864F /* View+MASAdditions.m */; };
+		AD97DC9E1B5F6851003B864F /* MMPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC941B5F6851003B864F /* MMPlaceHolder.m */; };
+		AD97DCAD1B5F685A003B864F /* NSDate+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCA21B5F685A003B864F /* NSDate+CQ.m */; };
+		AD97DCAE1B5F685A003B864F /* QMCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCA51B5F685A003B864F /* QMCalendar.m */; };
+		AD97DCAF1B5F685A003B864F /* CustomCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCA81B5F685A003B864F /* CustomCalendar.m */; };
+		AD97DCB01B5F685A003B864F /* QMCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCAA1B5F685A003B864F /* QMCalendarCell.m */; };
+		AD97DCB11B5F685A003B864F /* QMWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCAC1B5F685A003B864F /* QMWeekView.m */; };
+		AD97DD071B5F6D1E003B864F /* QMAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCE71B5F6D1E003B864F /* QMAppointmentViewController.m */; };
+		AD97DD081B5F6D1E003B864F /* QMAppointment.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCEA1B5F6D1E003B864F /* QMAppointment.m */; };
+		AD97DD091B5F6D1E003B864F /* QMAppointmentDay.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCEC1B5F6D1E003B864F /* QMAppointmentDay.m */; };
+		AD97DD0A1B5F6D1E003B864F /* QMDayAppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCF01B5F6D1E003B864F /* QMDayAppointmentCell.m */; };
+		AD97DD0B1B5F6D1E003B864F /* QMAppointmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCF21B5F6D1E003B864F /* QMAppointmentView.m */; };
+		AD97DD0C1B5F6D1E003B864F /* QMDoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DCFB1B5F6D1E003B864F /* QMDoctorViewController.m */; };
+		AD97DD0D1B5F6D1E003B864F /* QMClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DD041B5F6D1E003B864F /* QMClinicViewController.m */; };
+		AD97DD111B5F6D85003B864F /* QMClinicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DD101B5F6D85003B864F /* QMClinicDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,13 +57,76 @@
 		AD97DBE51B5F2BB7003B864F /* QMClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD97DBE91B5F2BB7003B864F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD97DBEA1B5F2BB7003B864F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AD97DBEC1B5F2BB7003B864F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		AD97DBED1B5F2BB7003B864F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AD97DBEF1B5F2BB7003B864F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AD97DBF21B5F2BB7003B864F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AD97DBF81B5F2BB7003B864F /* QMClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QMClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD97DBFD1B5F2BB7003B864F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD97DBFE1B5F2BB7003B864F /* QMClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMClientTests.m; sourceTree = "<group>"; };
+		AD97DC1A1B5F3A24003B864F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AD97DC1B1B5F3A24003B864F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AD97DC1D1B5F3A24003B864F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		AD97DC1E1B5F3A24003B864F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AD97DC2A1B5F3C15003B864F /* QMTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTabbarController.h; sourceTree = "<group>"; };
+		AD97DC2B1B5F3C15003B864F /* QMTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMTabbarController.m; sourceTree = "<group>"; };
+		AD97DC2D1B5F3DF3003B864F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD97DC2F1B5F3E51003B864F /* QMRegisterAndLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMRegisterAndLoginController.h; sourceTree = "<group>"; };
+		AD97DC301B5F3E51003B864F /* QMRegisterAndLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMRegisterAndLoginController.m; sourceTree = "<group>"; };
+		AD97DC321B5F3F87003B864F /* QMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMHomeViewController.h; sourceTree = "<group>"; };
+		AD97DC331B5F3F87003B864F /* QMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMHomeViewController.m; sourceTree = "<group>"; };
+		AD97DC381B5F3FF3003B864F /* QMMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMMeViewController.h; sourceTree = "<group>"; };
+		AD97DC391B5F3FF3003B864F /* QMMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMMeViewController.m; sourceTree = "<group>"; };
+		AD97DC3B1B5F40BD003B864F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AD97DC3F1B5F438A003B864F /* QMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMNavigationController.h; sourceTree = "<group>"; };
+		AD97DC401B5F438A003B864F /* QMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMNavigationController.m; sourceTree = "<group>"; };
+		AD97DC7B1B5F6851003B864F /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		AD97DC7C1B5F6851003B864F /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		AD97DC7D1B5F6851003B864F /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		AD97DC7E1B5F6851003B864F /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		AD97DC7F1B5F6851003B864F /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		AD97DC801B5F6851003B864F /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		AD97DC811B5F6851003B864F /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		AD97DC821B5F6851003B864F /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		AD97DC831B5F6851003B864F /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		AD97DC841B5F6851003B864F /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		AD97DC851B5F6851003B864F /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		AD97DC861B5F6851003B864F /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		AD97DC871B5F6851003B864F /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		AD97DC881B5F6851003B864F /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		AD97DC891B5F6851003B864F /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		AD97DC8A1B5F6851003B864F /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		AD97DC8B1B5F6851003B864F /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		AD97DC8C1B5F6851003B864F /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		AD97DC8D1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		AD97DC8E1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		AD97DC8F1B5F6851003B864F /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		AD97DC901B5F6851003B864F /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		AD97DC911B5F6851003B864F /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		AD97DC931B5F6851003B864F /* MMPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlaceHolder.h; sourceTree = "<group>"; };
+		AD97DC941B5F6851003B864F /* MMPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPlaceHolder.m; sourceTree = "<group>"; };
+		AD97DCA11B5F685A003B864F /* NSDate+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CQ.h"; sourceTree = "<group>"; };
+		AD97DCA21B5F685A003B864F /* NSDate+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CQ.m"; sourceTree = "<group>"; };
+		AD97DCA41B5F685A003B864F /* QMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMCalendar.h; sourceTree = "<group>"; };
+		AD97DCA51B5F685A003B864F /* QMCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMCalendar.m; sourceTree = "<group>"; };
+		AD97DCA71B5F685A003B864F /* CustomCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalendar.h; sourceTree = "<group>"; };
+		AD97DCA81B5F685A003B864F /* CustomCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalendar.m; sourceTree = "<group>"; };
+		AD97DCA91B5F685A003B864F /* QMCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMCalendarCell.h; sourceTree = "<group>"; };
+		AD97DCAA1B5F685A003B864F /* QMCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMCalendarCell.m; sourceTree = "<group>"; };
+		AD97DCAB1B5F685A003B864F /* QMWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWeekView.h; sourceTree = "<group>"; };
+		AD97DCAC1B5F685A003B864F /* QMWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWeekView.m; sourceTree = "<group>"; };
+		AD97DCE61B5F6D1E003B864F /* QMAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMAppointmentViewController.h; sourceTree = "<group>"; };
+		AD97DCE71B5F6D1E003B864F /* QMAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAppointmentViewController.m; sourceTree = "<group>"; };
+		AD97DCE91B5F6D1E003B864F /* QMAppointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMAppointment.h; sourceTree = "<group>"; };
+		AD97DCEA1B5F6D1E003B864F /* QMAppointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAppointment.m; sourceTree = "<group>"; };
+		AD97DCEB1B5F6D1E003B864F /* QMAppointmentDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMAppointmentDay.h; sourceTree = "<group>"; };
+		AD97DCEC1B5F6D1E003B864F /* QMAppointmentDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAppointmentDay.m; sourceTree = "<group>"; };
+		AD97DCEF1B5F6D1E003B864F /* QMDayAppointmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMDayAppointmentCell.h; sourceTree = "<group>"; };
+		AD97DCF01B5F6D1E003B864F /* QMDayAppointmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMDayAppointmentCell.m; sourceTree = "<group>"; };
+		AD97DCF11B5F6D1E003B864F /* QMAppointmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMAppointmentView.h; sourceTree = "<group>"; };
+		AD97DCF21B5F6D1E003B864F /* QMAppointmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAppointmentView.m; sourceTree = "<group>"; };
+		AD97DCFA1B5F6D1E003B864F /* QMDoctorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMDoctorViewController.h; sourceTree = "<group>"; };
+		AD97DCFB1B5F6D1E003B864F /* QMDoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMDoctorViewController.m; sourceTree = "<group>"; };
+		AD97DD031B5F6D1E003B864F /* QMClinicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMClinicViewController.h; sourceTree = "<group>"; };
+		AD97DD041B5F6D1E003B864F /* QMClinicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMClinicViewController.m; sourceTree = "<group>"; };
+		AD97DD0F1B5F6D85003B864F /* QMClinicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMClinicDetailViewController.h; sourceTree = "<group>"; };
+		AD97DD101B5F6D85003B864F /* QMClinicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMClinicDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,10 +168,8 @@
 		AD97DBE71B5F2BB7003B864F /* QMClient */ = {
 			isa = PBXGroup;
 			children = (
-				AD97DBEC1B5F2BB7003B864F /* AppDelegate.h */,
-				AD97DBED1B5F2BB7003B864F /* AppDelegate.m */,
-				AD97DBEF1B5F2BB7003B864F /* Images.xcassets */,
-				AD97DBF11B5F2BB7003B864F /* LaunchScreen.xib */,
+				AD97DC081B5F3A24003B864F /* Classes */,
+				AD97DC191B5F3A24003B864F /* Others */,
 				AD97DBE81B5F2BB7003B864F /* Supporting Files */,
 			);
 			path = QMClient;
@@ -88,8 +178,10 @@
 		AD97DBE81B5F2BB7003B864F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD97DC2D1B5F3DF3003B864F /* Info.plist */,
 				AD97DBE91B5F2BB7003B864F /* Info.plist */,
 				AD97DBEA1B5F2BB7003B864F /* main.m */,
+				AD97DC3B1B5F40BD003B864F /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -109,6 +201,477 @@
 				AD97DBFD1B5F2BB7003B864F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AD97DC081B5F3A24003B864F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC261B5F3B9C003B864F /* Register&Login(注册登录) */,
+				AD97DCE01B5F6D1E003B864F /* Clinic(诊所) */,
+				AD97DC0D1B5F3A24003B864F /* Home(首页) */,
+				AD97DC111B5F3A24003B864F /* Main(主要) */,
+				AD97DC151B5F3A24003B864F /* Me(我) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AD97DC0D1B5F3A24003B864F /* Home(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC0E1B5F3A24003B864F /* Controllers */,
+				AD97DC0F1B5F3A24003B864F /* Models */,
+				AD97DC101B5F3A24003B864F /* Views */,
+			);
+			path = "Home(首页)";
+			sourceTree = "<group>";
+		};
+		AD97DC0E1B5F3A24003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC321B5F3F87003B864F /* QMHomeViewController.h */,
+				AD97DC331B5F3F87003B864F /* QMHomeViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DC0F1B5F3A24003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DC101B5F3A24003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DC111B5F3A24003B864F /* Main(主要) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC121B5F3A24003B864F /* Controllers */,
+				AD97DC131B5F3A24003B864F /* Models */,
+				AD97DC141B5F3A24003B864F /* Views */,
+			);
+			path = "Main(主要)";
+			sourceTree = "<group>";
+		};
+		AD97DC121B5F3A24003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC3F1B5F438A003B864F /* QMNavigationController.h */,
+				AD97DC401B5F438A003B864F /* QMNavigationController.m */,
+				AD97DC2A1B5F3C15003B864F /* QMTabbarController.h */,
+				AD97DC2B1B5F3C15003B864F /* QMTabbarController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DC131B5F3A24003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DC141B5F3A24003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DC151B5F3A24003B864F /* Me(我) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC161B5F3A24003B864F /* Controllers */,
+				AD97DC171B5F3A24003B864F /* Models */,
+				AD97DC181B5F3A24003B864F /* Views */,
+			);
+			path = "Me(我)";
+			sourceTree = "<group>";
+		};
+		AD97DC161B5F3A24003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC381B5F3FF3003B864F /* QMMeViewController.h */,
+				AD97DC391B5F3FF3003B864F /* QMMeViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DC171B5F3A24003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DC181B5F3A24003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DC191B5F3A24003B864F /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC791B5F6837003B864F /* Libs */,
+				AD97DC1A1B5F3A24003B864F /* AppDelegate.h */,
+				AD97DC1B1B5F3A24003B864F /* AppDelegate.m */,
+				AD97DC1C1B5F3A24003B864F /* LaunchScreen.xib */,
+				AD97DC1E1B5F3A24003B864F /* Images.xcassets */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		AD97DC261B5F3B9C003B864F /* Register&Login(注册登录) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC271B5F3B9C003B864F /* Controllers */,
+				AD97DC281B5F3B9C003B864F /* Models */,
+				AD97DC291B5F3B9C003B864F /* Views */,
+			);
+			path = "Register&Login(注册登录)";
+			sourceTree = "<group>";
+		};
+		AD97DC271B5F3B9C003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC2F1B5F3E51003B864F /* QMRegisterAndLoginController.h */,
+				AD97DC301B5F3E51003B864F /* QMRegisterAndLoginController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DC281B5F3B9C003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DC291B5F3B9C003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DC791B5F6837003B864F /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC9F1B5F685A003B864F /* LCalendar */,
+				AD97DC7A1B5F6851003B864F /* Masonry */,
+				AD97DC921B5F6851003B864F /* MMPlaceHolder */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		AD97DC7A1B5F6851003B864F /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC7B1B5F6851003B864F /* MASCompositeConstraint.h */,
+				AD97DC7C1B5F6851003B864F /* MASCompositeConstraint.m */,
+				AD97DC7D1B5F6851003B864F /* MASConstraint+Private.h */,
+				AD97DC7E1B5F6851003B864F /* MASConstraint.h */,
+				AD97DC7F1B5F6851003B864F /* MASConstraint.m */,
+				AD97DC801B5F6851003B864F /* MASConstraintMaker.h */,
+				AD97DC811B5F6851003B864F /* MASConstraintMaker.m */,
+				AD97DC821B5F6851003B864F /* MASLayoutConstraint.h */,
+				AD97DC831B5F6851003B864F /* MASLayoutConstraint.m */,
+				AD97DC841B5F6851003B864F /* Masonry.h */,
+				AD97DC851B5F6851003B864F /* MASUtilities.h */,
+				AD97DC861B5F6851003B864F /* MASViewAttribute.h */,
+				AD97DC871B5F6851003B864F /* MASViewAttribute.m */,
+				AD97DC881B5F6851003B864F /* MASViewConstraint.h */,
+				AD97DC891B5F6851003B864F /* MASViewConstraint.m */,
+				AD97DC8A1B5F6851003B864F /* NSArray+MASAdditions.h */,
+				AD97DC8B1B5F6851003B864F /* NSArray+MASAdditions.m */,
+				AD97DC8C1B5F6851003B864F /* NSArray+MASShorthandAdditions.h */,
+				AD97DC8D1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.h */,
+				AD97DC8E1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m */,
+				AD97DC8F1B5F6851003B864F /* View+MASAdditions.h */,
+				AD97DC901B5F6851003B864F /* View+MASAdditions.m */,
+				AD97DC911B5F6851003B864F /* View+MASShorthandAdditions.h */,
+			);
+			path = Masonry;
+			sourceTree = "<group>";
+		};
+		AD97DC921B5F6851003B864F /* MMPlaceHolder */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DC931B5F6851003B864F /* MMPlaceHolder.h */,
+				AD97DC941B5F6851003B864F /* MMPlaceHolder.m */,
+			);
+			path = MMPlaceHolder;
+			sourceTree = "<group>";
+		};
+		AD97DC9F1B5F685A003B864F /* LCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCA01B5F685A003B864F /* Category */,
+				AD97DCA31B5F685A003B864F /* Models */,
+				AD97DCA61B5F685A003B864F /* Views */,
+			);
+			path = LCalendar;
+			sourceTree = "<group>";
+		};
+		AD97DCA01B5F685A003B864F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCA11B5F685A003B864F /* NSDate+CQ.h */,
+				AD97DCA21B5F685A003B864F /* NSDate+CQ.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		AD97DCA31B5F685A003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCA41B5F685A003B864F /* QMCalendar.h */,
+				AD97DCA51B5F685A003B864F /* QMCalendar.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DCA61B5F685A003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCA71B5F685A003B864F /* CustomCalendar.h */,
+				AD97DCA81B5F685A003B864F /* CustomCalendar.m */,
+				AD97DCA91B5F685A003B864F /* QMCalendarCell.h */,
+				AD97DCAA1B5F685A003B864F /* QMCalendarCell.m */,
+				AD97DCAB1B5F685A003B864F /* QMWeekView.h */,
+				AD97DCAC1B5F685A003B864F /* QMWeekView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DCE01B5F6D1E003B864F /* Clinic(诊所) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE11B5F6D1E003B864F /* Clinic(诊所详情) */,
+				AD97DD011B5F6D1E003B864F /* Main(诊所) */,
+			);
+			path = "Clinic(诊所)";
+			sourceTree = "<group>";
+		};
+		AD97DCE11B5F6D1E003B864F /* Clinic(诊所详情) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE21B5F6D1E003B864F /* Doctor(医生详情) */,
+				AD97DCFE1B5F6D1E003B864F /* Main(诊所详情) */,
+			);
+			path = "Clinic(诊所详情)";
+			sourceTree = "<group>";
+		};
+		AD97DCE21B5F6D1E003B864F /* Doctor(医生详情) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE31B5F6D1E003B864F /* Appointment(预约就诊) */,
+				AD97DCF31B5F6D1E003B864F /* Chat(线上咨询) */,
+				AD97DCF81B5F6D1E003B864F /* Main(医生详情) */,
+			);
+			path = "Doctor(医生详情)";
+			sourceTree = "<group>";
+		};
+		AD97DCE31B5F6D1E003B864F /* Appointment(预约就诊) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE41B5F6D1E003B864F /* Main */,
+			);
+			path = "Appointment(预约就诊)";
+			sourceTree = "<group>";
+		};
+		AD97DCE41B5F6D1E003B864F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE51B5F6D1E003B864F /* Controllers */,
+				AD97DCE81B5F6D1E003B864F /* Models */,
+				AD97DCED1B5F6D1E003B864F /* Views */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		AD97DCE51B5F6D1E003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE61B5F6D1E003B864F /* QMAppointmentViewController.h */,
+				AD97DCE71B5F6D1E003B864F /* QMAppointmentViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DCE81B5F6D1E003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCE91B5F6D1E003B864F /* QMAppointment.h */,
+				AD97DCEA1B5F6D1E003B864F /* QMAppointment.m */,
+				AD97DCEB1B5F6D1E003B864F /* QMAppointmentDay.h */,
+				AD97DCEC1B5F6D1E003B864F /* QMAppointmentDay.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DCED1B5F6D1E003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCEE1B5F6D1E003B864F /* Cell */,
+				AD97DCF11B5F6D1E003B864F /* QMAppointmentView.h */,
+				AD97DCF21B5F6D1E003B864F /* QMAppointmentView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DCEE1B5F6D1E003B864F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCEF1B5F6D1E003B864F /* QMDayAppointmentCell.h */,
+				AD97DCF01B5F6D1E003B864F /* QMDayAppointmentCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		AD97DCF31B5F6D1E003B864F /* Chat(线上咨询) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCF41B5F6D1E003B864F /* Main */,
+			);
+			path = "Chat(线上咨询)";
+			sourceTree = "<group>";
+		};
+		AD97DCF41B5F6D1E003B864F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCF51B5F6D1E003B864F /* Controllers */,
+				AD97DCF61B5F6D1E003B864F /* Models */,
+				AD97DCF71B5F6D1E003B864F /* Views */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		AD97DCF51B5F6D1E003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DCF61B5F6D1E003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DCF71B5F6D1E003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DCF81B5F6D1E003B864F /* Main(医生详情) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCF91B5F6D1E003B864F /* Controllers */,
+				AD97DCFC1B5F6D1E003B864F /* Models */,
+				AD97DCFD1B5F6D1E003B864F /* Views */,
+			);
+			path = "Main(医生详情)";
+			sourceTree = "<group>";
+		};
+		AD97DCF91B5F6D1E003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DCFA1B5F6D1E003B864F /* QMDoctorViewController.h */,
+				AD97DCFB1B5F6D1E003B864F /* QMDoctorViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DCFC1B5F6D1E003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DCFD1B5F6D1E003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DCFE1B5F6D1E003B864F /* Main(诊所详情) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DD0E1B5F6D85003B864F /* Controllers */,
+				AD97DCFF1B5F6D1E003B864F /* Models */,
+				AD97DD001B5F6D1E003B864F /* Views */,
+			);
+			path = "Main(诊所详情)";
+			sourceTree = "<group>";
+		};
+		AD97DCFF1B5F6D1E003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DD001B5F6D1E003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DD011B5F6D1E003B864F /* Main(诊所) */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DD021B5F6D1E003B864F /* Controllers */,
+				AD97DD051B5F6D1E003B864F /* Models */,
+				AD97DD061B5F6D1E003B864F /* Views */,
+			);
+			path = "Main(诊所)";
+			sourceTree = "<group>";
+		};
+		AD97DD021B5F6D1E003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DD031B5F6D1E003B864F /* QMClinicViewController.h */,
+				AD97DD041B5F6D1E003B864F /* QMClinicViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AD97DD051B5F6D1E003B864F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD97DD061B5F6D1E003B864F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD97DD0E1B5F6D85003B864F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD97DD0F1B5F6D85003B864F /* QMClinicDetailViewController.h */,
+				AD97DD101B5F6D85003B864F /* QMClinicDetailViewController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +754,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD97DBF31B5F2BB7003B864F /* LaunchScreen.xib in Resources */,
-				AD97DBF01B5F2BB7003B864F /* Images.xcassets in Resources */,
+				AD97DC221B5F3A24003B864F /* LaunchScreen.xib in Resources */,
+				AD97DC231B5F3A24003B864F /* Images.xcassets in Resources */,
+				AD97DC2E1B5F3DF3003B864F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,8 +774,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD97DBEE1B5F2BB7003B864F /* AppDelegate.m in Sources */,
+				AD97DD0B1B5F6D1E003B864F /* QMAppointmentView.m in Sources */,
+				AD97DD0A1B5F6D1E003B864F /* QMDayAppointmentCell.m in Sources */,
+				AD97DCB01B5F685A003B864F /* QMCalendarCell.m in Sources */,
+				AD97DC311B5F3E51003B864F /* QMRegisterAndLoginController.m in Sources */,
+				AD97DCAF1B5F685A003B864F /* CustomCalendar.m in Sources */,
+				AD97DCB11B5F685A003B864F /* QMWeekView.m in Sources */,
+				AD97DC211B5F3A24003B864F /* AppDelegate.m in Sources */,
+				AD97DC991B5F6851003B864F /* MASViewAttribute.m in Sources */,
+				AD97DC981B5F6851003B864F /* MASLayoutConstraint.m in Sources */,
+				AD97DD081B5F6D1E003B864F /* QMAppointment.m in Sources */,
+				AD97DC9C1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				AD97DC971B5F6851003B864F /* MASConstraintMaker.m in Sources */,
+				AD97DD091B5F6D1E003B864F /* QMAppointmentDay.m in Sources */,
+				AD97DCAD1B5F685A003B864F /* NSDate+CQ.m in Sources */,
+				AD97DD0D1B5F6D1E003B864F /* QMClinicViewController.m in Sources */,
+				AD97DC3A1B5F3FF3003B864F /* QMMeViewController.m in Sources */,
+				AD97DD0C1B5F6D1E003B864F /* QMDoctorViewController.m in Sources */,
+				AD97DC2C1B5F3C15003B864F /* QMTabbarController.m in Sources */,
+				AD97DC411B5F438A003B864F /* QMNavigationController.m in Sources */,
+				AD97DC951B5F6851003B864F /* MASCompositeConstraint.m in Sources */,
+				AD97DC9B1B5F6851003B864F /* NSArray+MASAdditions.m in Sources */,
+				AD97DC9E1B5F6851003B864F /* MMPlaceHolder.m in Sources */,
 				AD97DBEB1B5F2BB7003B864F /* main.m in Sources */,
+				AD97DCAE1B5F685A003B864F /* QMCalendar.m in Sources */,
+				AD97DD071B5F6D1E003B864F /* QMAppointmentViewController.m in Sources */,
+				AD97DC9D1B5F6851003B864F /* View+MASAdditions.m in Sources */,
+				AD97DC9A1B5F6851003B864F /* MASViewConstraint.m in Sources */,
+				AD97DD111B5F6D85003B864F /* QMClinicDetailViewController.m in Sources */,
+				AD97DC961B5F6851003B864F /* MASConstraint.m in Sources */,
+				AD97DC341B5F3F87003B864F /* QMHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,10 +826,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AD97DBF11B5F2BB7003B864F /* LaunchScreen.xib */ = {
+		AD97DC1C1B5F3A24003B864F /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AD97DBF21B5F2BB7003B864F /* Base */,
+				AD97DC1D1B5F3A24003B864F /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -329,7 +921,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/QMClient/PrefixHeader.pch";
 				INFOPLIST_FILE = QMClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -339,7 +933,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/QMClient/PrefixHeader.pch";
 				INFOPLIST_FILE = QMClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

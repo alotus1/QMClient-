@@ -8,6 +8,11 @@
 
 #import "AppDelegate.h"
 
+//#import "QMTabbarController.h"
+
+#import "QMRegisterAndLoginController.h"
+#import "QMNavigationController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +22,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] ;
+    
+//    QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
+//    self.window.rootViewController = tabbarController ;
+    
+    // 创建登录\注册界面
+    QMRegisterAndLoginController * rlVc = [[QMRegisterAndLoginController alloc] init] ;
+    QMNavigationController * navVc = [[QMNavigationController alloc] initWithRootViewController:rlVc] ;
+    self.window.rootViewController = navVc ;
+    
+    
+    
+    [QM_USERDEFAULT setBool:NO forKey:QM_USERDEFAULT_ISLOGIN] ;
+    
+    
+    
+    
+    
+
+    [self.window makeKeyAndVisible] ;
+    
+    
+    
     return YES;
 }
 
