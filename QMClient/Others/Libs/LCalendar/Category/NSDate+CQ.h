@@ -30,5 +30,23 @@
 - (NSDate *) currentZoneDate ;
 
 
+/**
+ *  获得格式为"yyyy年mm月dd日"的字符串
+ *
+ *  @return 返回格式为"yyyy年mm月dd日"的字符串
+ */
+- (NSString *) stringWithChineseDateFormatter ;
+
+/**
+ *  给定一个1-48的数字,计算表示的时间,以半小时为划分
+ *
+ *  @param number 给定的数字
+ *
+ *  @return 返回给定数组对应的48小时的时间划分
+ */
++ (NSDate *) timeWithNumber : (NSInteger) number ;
+
+
+
 
 @end

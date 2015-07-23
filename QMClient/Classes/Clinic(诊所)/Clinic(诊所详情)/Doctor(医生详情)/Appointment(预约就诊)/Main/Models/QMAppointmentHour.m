@@ -2,12 +2,12 @@
 //  QMAppointmentDay.m
 //  AppointmentView
 //
-//  Created by Lotus on 15/7/22.
+//  Created by Lotus on 15/7/21.
 //  Copyright (c) 2015年 Lotus. All rights reserved.
 //
 
-#import "QMAppointmentDay.h"
+#import "QMAppointmentHour.h"
 
-@implementation QMAppointmentDay
+@implementation QMAppointmentHour
 
 @end

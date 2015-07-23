@@ -10,11 +10,13 @@
 
 #import "QMCalendar.h"
 
+#import "QMAppointmentDay.h"
+
 // 当天状态文字格式
 #define QM_FONT_STATELABEL [UIFont systemFontOfSize:10]
 // 可以预约的提示信息
 #define QM_STRING_AVAILABLE @"可约"
-
+#define QM_STRING_UNAVAILABLE @"约满"
 @interface QMCalendarCell ()
 
 /**
@@ -39,6 +41,21 @@
 
 @implementation QMCalendarCell
 
+- (void)setAppointmentDay:(QMAppointmentDay *)appointmentDay {
+
+    _appointmentDay = appointmentDay ;
+    
+    // 1.将状态信息显示出来
+    if (appointmentDay.status == QMAppointmentDayStatusEnable) {
+        self.tintView.backgroundColor = [UIColor greenColor] ;
+        self.stateLabel.text = QM_STRING_AVAILABLE ;
+    } else {
+    
+        self.tintView.backgroundColor = [UIColor grayColor] ;
+        self.stateLabel.text = QM_STRING_UNAVAILABLE ;
+    }
+}
+
 /**
  *  重写setCalendar方法,在这里可以判断cell要显示的样式
  */
@@ -54,7 +71,6 @@
         self.backgroundColor = [UIColor clearColor] ;
         // 将cell中的子控件隐藏
         for (UIView * view in self.subviews) {
-//            [view removeFromSuperview] ;
             view.hidden = YES ;
         }
         // 取消cell与用户的交互
@@ -62,24 +78,27 @@
         return ;
     }
     
+    // 取消子控件的隐藏状态
     for (UIView * view in self.subviews) {
         //            [view removeFromSuperview] ;
         view.hidden = NO ;
     }
+    // 开启用户交互
     self.userInteractionEnabled = YES ;
 //    self.backgroundColor = [UIColor yellowColor] ;
     self.dayLabel.text = [NSString stringWithFormat:@"%ld" , calendar.day] ;
-#warning 在这里可以增加一个圆圈来表示当天,使用calendar.isCurrentDay判断
+    //在这里可以增加一个圆圈来表示当天,使用calendar.isCurrentDay判断
     if (calendar.isCurrentDay) {
-        self.dayLabel.textColor = [UIColor lightGrayColor] ;
+        self.dayLabel.textColor = [UIColor blackColor] ;
         UIView * circleBackView = [[UIView alloc] init] ;
         [self.contentView addSubview:circleBackView] ;
         self.circleBackView = circleBackView ;
         circleBackView.alpha = 0.5 ;
         circleBackView.backgroundColor = [UIColor redColor] ;
         circleBackView.clipsToBounds = YES ;
-    }
-    self.dayLabel.textColor = calendar.isCurrentDay ? [UIColor lightGrayColor] : [UIColor blackColor] ;
+    } else
+        self.dayLabel.textColor = [UIColor blackColor] ;
+//    self.dayLabel.textColor = calendar.isCurrentDay ? [UIColor lightGrayColor] : [UIColor blackColor] ;
     
     [self setNeedsLayout] ;
 
@@ -107,7 +126,7 @@
         UILabel * stateLabel = [[UILabel alloc] init] ;
         stateLabel.textAlignment = NSTextAlignmentCenter ;
 #warning 可约或者不可约要根据后台数据来判断
-        stateLabel.text = QM_STRING_AVAILABLE ;
+//        stateLabel.text = QM_STRING_AVAILABLE ;
         stateLabel.font = QM_FONT_STATELABEL ;
         [self.contentView addSubview:stateLabel] ;
         self.stateLabel = stateLabel ;

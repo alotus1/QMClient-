@@ -11,7 +11,7 @@
 #import "CustomCalendar.h"
 #import "QMAppointment.h"
 
-#import "QMAppointmentDay.h"
+#import "QMAppointmentHour.h"
 
 #import "QMDayAppointmentCell.h"
 
@@ -37,6 +37,7 @@
  */
 @property (strong , nonatomic) NSArray * dataSource ;
 
+
 /**
  *  可以预约的起始时间
  */
@@ -48,6 +49,11 @@
 @property (strong , nonatomic) NSDate * endDate ;
 
 /**
+ *  当前选择的预约日期
+ */
+@property (strong , nonatomic) NSDate * selectedDate ;
+
+/**
  *  时间格式设置
  */
 @property (strong , nonatomic) NSDateFormatter * dateFormatter ;
@@ -57,6 +63,14 @@
 @implementation QMAppointmentView
 
 #pragma mark - 数据相关
+- (void)setMonthAppointments:(NSArray *)monthAppointments {
+
+    _monthAppointments = monthAppointments ;
+    
+    // 将数据传递给日历视图
+    self.calendarView.monthAppointments = monthAppointments ;
+}
+
 - (void)setAppointments:(NSArray *)appointments {
 
     _appointments = appointments ;
@@ -82,7 +96,7 @@
 - (void) settingDataSource : (NSInteger) day {
     
 #warning 如果医生自己规定出诊的时间,这个才会用上
-    QMAppointment * appointment = self.appointments[day] ;
+ //   QMAppointment * appointment = self.appointments[day] ;
     
     NSMutableArray * times = [NSMutableArray array] ;
 #warning 这里是医生自己决定出诊时间的代码
@@ -92,7 +106,7 @@
         [times addObject:timeString] ;
     }
     */
-#warning 在控制器中进行网络请求的时候将这个数据填入,每个cell的数据模型为QMAppointmentDay类型
+#warning 在控制器中进行网络请求的时候将这个数据填入,每个cell的数据模型为QMAppointmentHour类型
     for (NSDate * date = self.startDate; [date compare:self.endDate]; date = [date dateByAddingTimeInterval:QM_TIMEINTERVAL]) {
 //        NSLog(@"%@" , date) ;
         // 中间空出1个小时的时间
@@ -131,6 +145,7 @@
 #warning 这里需要根据日期来请求网络数据,让控制器请求
 //            [viewTmp settingDataSource : date.day] ;
             if (viewTmp.wantNewDateAppointmentInformation) {
+                viewTmp.selectedDate = date ;
                 viewTmp.wantNewDateAppointmentInformation(date) ;
             }
             
@@ -149,18 +164,21 @@
         }] ;
         
         
-        __weak typeof(calendar) calTmp = calendar ;
+        
+        self.calendarView = calendar ;
+        __weak typeof(calendar) calTmp = self.calendarView ;
         [calendar setViewHeightChangedBlock:^{
             [viewTmp.tableView beginUpdates] ;
             viewTmp.tableView.tableHeaderView = calTmp ;
             [viewTmp.tableView endUpdates] ;
         }] ;
-        self.calendarView = calendar ;
         
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain] ;
         tableView.delegate = self ;
         tableView.dataSource = self ;
         tableView.tableHeaderView = calendar ;
+        // 去掉cell的分割线
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
         [self addSubview:tableView] ;
         self.tableView = tableView ;
         
@@ -191,6 +209,8 @@
     self.startDate = [self.dateFormatter dateFromString:@"12:00:00"] ;
     self.endDate = [self.dateFormatter dateFromString:@"18:00:00"] ;
     
+    self.selectedDate = [NSDate date] ;
+    
     
     /***设置起始\结束时间****/
 }
@@ -207,6 +227,7 @@
     [super layoutSubviews] ;
     
     self.tableView.frame = self.bounds ;
+    
 }
 
 #pragma mark - UITableView数据源方法
@@ -219,7 +240,7 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     // 1.获取数据
-    QMAppointmentDay * dayAppointment = self.dayAppointments[indexPath.row] ;
+    QMAppointmentHour * appointmentHour = self.dayAppointments[indexPath.row] ;
     
     /*
     static NSString * identifier = @"defaultCell" ;
@@ -236,13 +257,20 @@
     // 2.创建cell
     QMDayAppointmentCell * cell = [QMDayAppointmentCell dayAppointmentCell:tableView] ;
     // 3.传递模型数据
-    cell.appointmentDay = dayAppointment ;
+    cell.appointmentHour = appointmentHour ;
     
     return cell ;
 }
 
 #pragma mark - UITableView代理方法
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+//    NSLog(@"%@" , self.dayAppointments[indexPath.row]) ;
+    // 选择这个时间后可以进行预约,让控制器发送预约请求
+    if (self.sendAppointmentRequest) {
+        self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate) ;
+    }
+}
 
 
 

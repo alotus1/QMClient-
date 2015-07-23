@@ -9,6 +9,7 @@
 #import "QMDoctorViewController.h"
 
 #import "QMAppointmentViewController.h"
+#import "QMRegisterAndLoginController.h"
 
 @interface QMDoctorViewController ()
 
@@ -29,6 +30,15 @@
 
 
 - (void) btnTouch {
+    
+    // 如果用户未登录则弹出登录界面
+    if (!QM_GETLOGINSTATUS) {
+        
+        QMRegisterAndLoginController * rlVc = [[QMRegisterAndLoginController alloc] init] ;
+        UINavigationController * navVc = [[UINavigationController alloc] initWithRootViewController:rlVc] ;
+        [self presentViewController:navVc animated:YES completion:nil] ;
+
+    }
     
     // 1.创建医生详情页面
     QMAppointmentViewController * appointmentVc = [[QMAppointmentViewController alloc] init] ;

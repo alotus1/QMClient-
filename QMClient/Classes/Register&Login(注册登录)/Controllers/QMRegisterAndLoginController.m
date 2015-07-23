@@ -34,17 +34,23 @@
 - (void) login {
 
     // 1.在这里发送登录的网络请求,验证用户的登录密码等等
+    [self dismissViewControllerAnimated:YES completion:^{
     
+    }] ;
     
+    /*
     // 2.验证成功则跳转到主页
     QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
+    
     [self presentViewController:tabbarController animated:YES completion:^{
     
         AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate ;
         appDelegate.window.rootViewController = tabbarController ;
-#warning 在这里要保证登录界面销毁
+        // 在这里要保证登录界面销毁
+        [self removeFromParentViewController] ;
+
     }] ;
-    
+    */
     
     
 }

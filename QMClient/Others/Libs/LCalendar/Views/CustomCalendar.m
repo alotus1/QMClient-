@@ -69,6 +69,15 @@
 
 @implementation CustomCalendar
 
+- (void)setMonthAppointments:(NSArray *)monthAppointments {
+
+    _monthAppointments = monthAppointments ;
+    
+    // 刷新colletionView的数据
+    [self.calendarView reloadData] ;
+
+}
+
 #pragma mark - 初始化相关
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -164,8 +173,10 @@
     // 获取本月有多少天
     NSInteger dayOfCurrentMonth = [self.gregorianCalendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.currentDate].length ;
     // 获取本月有几周
-    NSInteger weekOfCurrentMonth = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitWeekOfMonth inUnit:NSCalendarUnitMonth forDate:self.currentDate].length ;
-//    NSLog(@"%ld" ,weekOfCurrentMonth) ;
+#warning 这里获取的一个月有几周在iOS7.1上不准确,但是在8.4上是正确的
+    NSInteger weekOfCurrentMonth = [self.gregorianCalendar rangeOfUnit:NSCalendarUnitWeekOfMonth inUnit:NSCalendarUnitMonth forDate:self.currentDate].length ;
+//    NSLog(@"weekOfCurrentMonth %ld" ,weekOfCurrentMonth) ;
+//    NSLog(@"currentdate %@" , self.currentDate) ;
     self.weekOfCurrentMonth = weekOfCurrentMonth ;
 #warning 在这里变更self的高度来适应一个月的周数
     [self changeHeight] ;
@@ -263,7 +274,8 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview {
 
 //    self.frame = CGRectMake(0, 0, mainScreen.bounds.size.width, mainScreen.bounds.size.height * 0.5) ;
-    self.frame = CGRectMake(0, 0, newSuperview.frame.size.width, QM_CELLHEIGHT * self.weekOfCurrentMonth + QM_HEADERHEIGHT) ;
+    self.frame = CGRectMake(0, 0, QM_SCREENWIDTH, QM_CELLHEIGHT * self.weekOfCurrentMonth + QM_HEADERHEIGHT) ;
+//    NSLog(@"cellhei %d week %ld head %f" , QM_CELLHEIGHT ,self.weekOfCurrentMonth ,QM_HEADERHEIGHT ) ;
     
 }
 
@@ -296,6 +308,7 @@
 
     QMCalendarCell * cell = (QMCalendarCell *)[QMCalendarCell calendarCellWithCollectionView:collectionView andIndexPath:indexPath] ;
     cell.calendar = self.dataSource[indexPath.item] ;
+    cell.appointmentDay = self.monthAppointments[indexPath.item] ;
     return cell ;
     
 }

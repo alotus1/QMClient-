@@ -37,4 +37,27 @@
     return components.day ;
 }
 
+- (NSString *)stringWithChineseDateFormatter {
+
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"yyyy年MM月dd日" ;
+    return [dateFormatter stringFromDate:self] ;
+}
+
++ (NSDate *)timeWithNumber:(NSInteger)number {
+
+    // 设置时间格式
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"HH:mm" ;
+    
+    // 计算时间间隔
+    // 通过字符串获取日期
+    NSDate * date = [dateFormatter dateFromString:@"00:00"] ;
+    date = [date dateByAddingTimeInterval:(number - 1) * 30 * 60] ;
+    
+//    NSLog(@"date %@" , [dateFormatter stringFromDate:date]) ;
+    
+    return date ;
+}
+
 @end

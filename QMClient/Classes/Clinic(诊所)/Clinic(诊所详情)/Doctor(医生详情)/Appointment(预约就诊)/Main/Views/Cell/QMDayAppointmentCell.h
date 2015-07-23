@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@class QMAppointmentDay ;
+@class QMAppointmentHour ;
 /**
  *  显示当日所有时间段的预约状态信息cell
  */
@@ -21,6 +21,6 @@
 /**
  *  当前时间段的数据模型
  */
-@property (strong , nonatomic) QMAppointmentDay * appointmentDay ;
+@property (strong , nonatomic) QMAppointmentHour * appointmentHour ;
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class QMAppointmentHour ;
+
 /**
  *  预约视图
  */
@@ -26,6 +28,11 @@
 @property (strong , nonatomic) NSArray * dayAppointments ;
 
 /**
+ *  当月每天的预约信息
+ */
+@property (strong , nonatomic) NSArray * monthAppointments ;
+
+/**
  *  切换月份的时候进行的操作
  *  block中的参数为请求的日期信息
  */
@@ -36,7 +43,8 @@
  */
 @property (copy , nonatomic) void(^wantNewDateAppointmentInformation)(NSDate * date) ;
 
-//- (void) changeAppointmentTime : (QMAppointmentView *) appointmentView changeMonthBlock : 
+
+@property (copy , nonatomic) void(^sendAppointmentRequest)(QMAppointmentHour * appointmentHour , NSDate * selectedDate) ;
 
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class QMCalendar ;
+@class QMAppointmentDay ;
 
 /**
  *  自定义日历视图cell
@@ -19,6 +20,11 @@
  *  日期模型
  */
 @property (strong , nonatomic) QMCalendar * calendar ;
+
+/**
+ *  当日的预约状态
+ */
+@property (strong , nonatomic) QMAppointmentDay * appointmentDay ;
 
 /**
  *  快速获取一个cell

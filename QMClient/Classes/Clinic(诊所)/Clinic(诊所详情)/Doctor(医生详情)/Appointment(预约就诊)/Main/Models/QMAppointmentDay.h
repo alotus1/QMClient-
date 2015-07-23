@@ -2,36 +2,33 @@
 //  QMAppointmentDay.h
 //  AppointmentView
 //
-//  Created by Lotus on 15/7/21.
+//  Created by Lotus on 15/7/22.
 //  Copyright (c) 2015年 Lotus. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-/**
- *  医生一天中每个时间段的预约信息模型
- */
+typedef NS_ENUM(NSUInteger, QMAppointmentDayStatus) {
+    QMAppointmentDayStatusEnable,
+    QMAppointmentDayStatusDisable
+};
 
+/**
+ *  医生一个月中每天的预约信息
+ */
 @interface QMAppointmentDay : NSObject
 
 /**
- *  预约的开始时间
+ *  日期
  */
-@property (copy , nonatomic) NSString * hour ;
+@property (copy , nonatomic) NSString * day ;
 
 /**
- *  预约的结束时间(以00:00:00格式表示的时间字符串)
+ *  当日医生的预约状态
  */
-@property (copy , nonatomic) NSString * endTime ;
+@property (assign , nonatomic) QMAppointmentDayStatus status ;
 
-/**
- *  预约的开始时间(以00:00:00格式表示的时间字符串)
- */
-@property (copy , nonatomic) NSString * startTime ;
 
-/**
- *  预约时间对应的预约状态
- */
-@property (copy , nonatomic) NSString * status ;
+
 
 @end

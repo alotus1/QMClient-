@@ -8,10 +8,13 @@
 
 #import "AppDelegate.h"
 
-//#import "QMTabbarController.h"
+#import "QMTabbarController.h"
 
-#import "QMRegisterAndLoginController.h"
-#import "QMNavigationController.h"
+#import "NSDate+CQ.h"
+
+//#import "QMRegisterAndLoginController.h"
+//#import "QMNavigationController.h"
+
 
 @interface AppDelegate ()
 
@@ -25,20 +28,23 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] ;
     
-//    QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
-//    self.window.rootViewController = tabbarController ;
+    QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
+    self.window.rootViewController = tabbarController ;
     
+    /*
     // 创建登录\注册界面
     QMRegisterAndLoginController * rlVc = [[QMRegisterAndLoginController alloc] init] ;
-    QMNavigationController * navVc = [[QMNavigationController alloc] initWithRootViewController:rlVc] ;
+    UINavigationController * navVc = [[UINavigationController alloc] initWithRootViewController:rlVc] ;
     self.window.rootViewController = navVc ;
-    
+    */
     
     
     [QM_USERDEFAULT setBool:NO forKey:QM_USERDEFAULT_ISLOGIN] ;
     
     
-    
+    NSDateFormatter * datefor = [[NSDateFormatter alloc] init] ;
+    datefor.dateFormat = @"HH:mm" ;
+    NSLog(@"%@" , [datefor stringFromDate:[NSDate timeWithNumber : 48]]) ;
     
     
 

@@ -19,9 +19,37 @@
 }
 
 + (void)initialize {
+    
+    UINavigationBar * navBar = [UINavigationBar appearance] ;
+    
+    // 设置背景颜色
+    NSString * bgImage = @"NavBar64" ;
+    [navBar setBackgroundImage:[UIImage imageNamed:bgImage] forBarMetrics:UIBarMetricsDefault] ;
+    
+    NSDictionary * attrs = @{NSForegroundColorAttributeName : [UIColor whiteColor] ,
+                             NSFontAttributeName : [UIFont systemFontOfSize:18]} ;
+    [navBar setTitleTextAttributes:attrs] ;
+    
+    
+    // 设置button主题
+    UIBarButtonItem * item = [UIBarButtonItem appearance] ;
+    NSDictionary * itemAttrs = @{NSForegroundColorAttributeName : [UIColor whiteColor] ,
+                                 NSFontAttributeName : [UIFont systemFontOfSize:16]} ;
+    [item setTitleTextAttributes:itemAttrs forState:UIControlStateNormal] ;
+    
+    // 设置navigation的渲染颜色
+    navBar.tintColor = [UIColor whiteColor] ;
+    
+}
 
-    
-    
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+
+    //在这里加判断 ,主页的都不用隐藏,子页面隐藏
+    if (self.childViewControllers.count > 0) {
+        
+        viewController.hidesBottomBarWhenPushed = YES ;
+    }
+    [super pushViewController:viewController animated:animated] ;
 }
 
 

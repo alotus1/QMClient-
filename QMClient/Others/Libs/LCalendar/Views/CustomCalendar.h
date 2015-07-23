@@ -21,6 +21,11 @@
 @property (copy , nonatomic) void(^selectDayItemBlock)(NSDate * selectedDate) ;
 
 /**
+ *  当月每天的预约状态信息
+ */
+@property (strong , nonatomic) NSArray * monthAppointments ;
+
+/**
  *  当日历的高度改变之后需要进行操作的block方法
  */
 @property (copy , nonatomic) void(^viewHeightChangedBlock)() ;
