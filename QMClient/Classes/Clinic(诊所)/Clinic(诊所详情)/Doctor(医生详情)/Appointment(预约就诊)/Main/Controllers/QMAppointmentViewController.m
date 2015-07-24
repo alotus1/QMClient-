@@ -194,7 +194,7 @@
 //    appointmentView.dayAppointments = self.dayDatas ;
 //    appointmentView.monthAppointments = self.monthDatas ;
     [self sendRequestForHoursAppointmentDataWithDate:[NSDate date]] ;
-    [self sendRequestForDaysAppointmentData] ;
+    [self sendRequestForDaysAppointmentDataWithDate:[NSDate date]] ;
     [appointmentView setWantNewDateAppointmentInformation:^(NSDate *date) {
 #warning 网络请求date日期下每个时间段的预约信息
 //        NSLog(@"请求 %@每个时间段的预约信息" , date) ;
@@ -216,7 +216,7 @@
     // 切换月份的时候需要重新进行网络请求
     [appointmentView setChangeMonthBlock:^(NSDate *date) {
         
-        [vc sendRequestForDaysAppointmentData] ;
+        [vc sendRequestForDaysAppointmentDataWithDate:date] ;
         [vc sendRequestForHoursAppointmentDataWithDate:date] ;
     }] ;
     [self.view addSubview:appointmentView] ;
@@ -360,8 +360,10 @@
 /**
  *  请求当月每天的预约状态信息
  */
-- (void) sendRequestForDaysAppointmentData {
+- (void) sendRequestForDaysAppointmentDataWithDate : (NSDate *) date {
 
+    
+    QMLog(@"请求医生 %@ 月的预约信息" , date) ;
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager] ;
     //此处设置后返回的默认是NSData的数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
