@@ -15,10 +15,18 @@
 
 #import "NSDate+CQ.h"
 
+#import "RequestURL.h"
+#import "AFHTTPRequestOperationManager.h"
+
 // 医生预约的时间间隔
 #define QM_TIMEINTERVAL 30 * 60
 
 @interface QMAppointmentViewController () <UIAlertViewDelegate>
+
+/**
+ *  预约视图
+ */
+@property (weak , nonatomic) QMAppointmentView * appointmentView ;
 
 @property (strong , nonatomic) NSArray * datas ;
 
@@ -41,19 +49,27 @@
 @property (strong , nonatomic) NSDate * endDate ;
 
 /**
- *  时间格式设置
+ *  时间格式设置(格式为HH:mm:ss)
  */
 @property (strong , nonatomic) NSDateFormatter * dateFormatter ;
+
+
 
 /**
  *  用户选择的预约时间,保存成一个全局的变量
  */
 @property (strong , nonatomic) QMAppointmentHour * appointmentHour ;
 
+/**
+ *  预约\取消预约的URL地址
+ */
+@property (copy , nonatomic) NSString * appointURL ;
+
 @end
 
 @implementation QMAppointmentViewController
-
+// 假数据
+/*
 - (NSArray *)monthDatas {
 
     if (_monthDatas == nil) {
@@ -63,7 +79,7 @@
         
             QMAppointmentDay * appointmentDay = [[QMAppointmentDay alloc] init] ;
             appointmentDay.day = [NSString stringWithFormat:@"%d" , i] ;
-            appointmentDay.status = i % 2 ? 1 : 0 ;
+            appointmentDay.day_status = i % 2 ? 1 : 0 ;
             
             [datas addObject:appointmentDay] ;
             
@@ -84,21 +100,26 @@
         
         int i = 0 ;
         for (NSDate * date = self.startDate; [date compare:self.endDate]; date = [date dateByAddingTimeInterval:QM_TIMEINTERVAL]) {
-            QMAppointmentHour * dayAppointment = [[QMAppointmentHour alloc] init] ;
+            QMAppointmentHour * appointmentHour = [[QMAppointmentHour alloc] init] ;
             //            dayAppointment.hour = @"10" ;
             
             // 中间空出1个小时的时间
-            
             if ([date compare:[self.dateFormatter dateFromString:@"12:00:00"]] >= NSOrderedSame && [date compare:[self.dateFormatter dateFromString:@"13:00:00"]] < NSOrderedSame) {
+//                continue ;
+                appointmentHour.hourStatus = QMAppointmentHourStatusRest ;
+            } else
+                appointmentHour.hourStatus = i++ % 3 + 1 ;
+            
+            if (appointmentHour.hourStatus == QMAppointmentHourStatusRest) {
                 continue ;
             }
 #warning 打印的时候时间是GMT时间,但是这里获取到的时间是设置的正常时间
             NSString * timeString = [NSString stringWithFormat:@"%@ %@" , [self.dateFormatter stringFromDate:date] , [self.dateFormatter stringFromDate:[date dateByAddingTimeInterval:QM_TIMEINTERVAL]]] ;
-            dayAppointment.endTime = [self.dateFormatter stringFromDate:[date dateByAddingTimeInterval:QM_TIMEINTERVAL]] ;
-            dayAppointment.startTime = [self.dateFormatter stringFromDate:date] ;
-            dayAppointment.status = i++ % 4 ;
+            appointmentHour.endTime = [self.dateFormatter stringFromDate:[date dateByAddingTimeInterval:QM_TIMEINTERVAL]] ;
+            appointmentHour.startTime = [self.dateFormatter stringFromDate:date] ;
+            
 #warning 使用模型,装载开始的时间等参数
-            [datas addObject:dayAppointment] ;
+            [datas addObject:appointmentHour] ;
         }
         
         _dayDatas = datas ;
@@ -106,6 +127,7 @@
     }
     return _dayDatas ;
 }
+*/
 
 - (void) setupTime {
     
@@ -120,8 +142,8 @@
     //
     //    NSDate * endDate = [[dateformatter dateFromString:@"18:00:00"] currentZoneDate] ;
     
-    self.startDate = [self.dateFormatter dateFromString:@"10:00:00"] ;
-    self.endDate = [self.dateFormatter dateFromString:@"18:00:00"] ;
+    self.startDate = [self.dateFormatter dateFromString:@"00:00:00"] ;
+    self.endDate = [self.dateFormatter dateFromString:@"23:30:00"] ;
     
     
     /***设置起始\结束时间****/
@@ -129,7 +151,7 @@
 
 /**
  *  这里的数据是医生自己规定自己当天的出诊时间的数据
- */
+
 - (NSArray *)datas {
     
     if (_datas == nil) {
@@ -157,7 +179,7 @@
     }
     return _datas ;
 }
-
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -165,22 +187,37 @@
     
     __weak typeof(self) vc = self ;
     QMAppointmentView * appointmentView = [[QMAppointmentView alloc] init] ;
+    self.appointmentView = appointmentView ;
     // 数据传递
+    [self setupTime] ;
 //    appointmentView.appointments = self.datas ;
-    appointmentView.dayAppointments = self.dayDatas ;
-    appointmentView.monthAppointments = self.monthDatas ;
+//    appointmentView.dayAppointments = self.dayDatas ;
+//    appointmentView.monthAppointments = self.monthDatas ;
+    [self sendRequestForHoursAppointmentDataWithDate:[NSDate date]] ;
+    [self sendRequestForDaysAppointmentData] ;
     [appointmentView setWantNewDateAppointmentInformation:^(NSDate *date) {
 #warning 网络请求date日期下每个时间段的预约信息
-        NSLog(@"newDate %@" , date) ;
+//        NSLog(@"请求 %@每个时间段的预约信息" , date) ;
+        [vc sendRequestForHoursAppointmentDataWithDate : date] ;
     }] ;
     
-    [appointmentView setSendAppointmentRequest:^(QMAppointmentHour *appointmentHour , NSDate * selectedDate) {
+    [appointmentView setSendAppointmentRequest:^(QMAppointmentHour *appointmentHour , NSDate * selectedDate , QMAppointmentViewSendAppointRequestType requestType) {
         
-        vc.appointmentHour = appointmentHour ;
+        // 这里将开始的时间与日期拼接一下
+        selectedDate = [NSDate dateWithDate:selectedDate time:appointmentHour.startTime] ;
         // 在这里将时间存储到预约时间段的模型中
         appointmentHour.appointmentDate = selectedDate ;
-        [vc showAlertView] ;
-        NSLog(@"预约时间 %@", appointmentHour.startTime) ;
+        
+        vc.appointmentHour = appointmentHour ;
+
+        [vc showAlertViewWithRequestType:requestType] ;
+    }] ;
+    
+    // 切换月份的时候需要重新进行网络请求
+    [appointmentView setChangeMonthBlock:^(NSDate *date) {
+        
+        [vc sendRequestForDaysAppointmentData] ;
+        [vc sendRequestForHoursAppointmentDataWithDate:date] ;
     }] ;
     [self.view addSubview:appointmentView] ;
     
@@ -188,13 +225,59 @@
     
 }
 
-- (void) showAlertView {
+- (void) showAlertViewWithRequestType : (QMAppointmentViewSendAppointRequestType) requestType {
     
-    NSString * tipString = [NSString stringWithFormat:@"您预约了%@%@-%@在青苗儿童口腔门诊部由黄晓明医生进行复诊。我们会提前一天给您发送提醒信息，请准时到店，如需取消请提前24小时取消." , [self.appointmentHour.appointmentDate stringWithChineseDateFormatter] , self.appointmentHour.startTime , self.appointmentHour.endTime] ;
+#warning 在这里将两个接口的URL地址设定好,调用的时候直接请求URL
+    self.appointURL = requestType == QMAppointmentViewSendAppointRequestTypeAppoint ? @"预约接口" : @"取消预约接口" ;
+    // 预约提示
+    NSString * appointString = [NSString stringWithFormat:@"您预约了%@%@-%@在青苗儿童口腔门诊部由黄晓明医生进行复诊。我们会提前一天给您发送提醒信息，请准时到店，如需取消请提前24小时取消." , [self.appointmentHour.appointmentDate stringWithChineseDateFormatter] , self.appointmentHour.startTime , self.appointmentHour.endTime] ;
+#warning 在取消预约的时候需要进行判断,是否已经超过了可以取消预约的时限(24小时),如果当前系统的时间与预约的时间相差大于24小时则可以取消预约,如果该时限小于24小时,则提示用户不可以取消预约,需要与医生联系
+    // 取消预约提示判断
+    NSString * cancelString = nil ;
+    if (requestType == QMAppointmentViewSendAppointRequestTypeCancel) {
+        if ([self canCancelAppointment]) {
+            // 可以取消预约
+            cancelString = [NSString stringWithFormat:@"您确定要取消%@%@-%@在青苗儿童口腔门诊部由黄晓明医生进行的复诊吗？",[self.appointmentHour.appointmentDate stringWithChineseDateFormatter] , self.appointmentHour.startTime , self.appointmentHour.endTime] ;
+        } else {
+            // 不可以取消预约
+            cancelString = @"亲爱的用户，为了不影响医生的整体安排，我们的预约需要提前24小时取消，目前已超出取消期限，如果您确定要取消请与医生联系，需要他手动取消感谢您的支持。" ;
+            // 在这里将URL置为空,在请求的时候需要进行判断 ,URL为空的时候则不进行网络请求
+            self.appointURL = nil ;
+        }
+    }
+    
+    
+    NSString * tipString = requestType == QMAppointmentViewSendAppointRequestTypeAppoint ? appointString : cancelString ;
+    
+    NSString * title= requestType == QMAppointmentViewSendAppointRequestTypeAppoint ? @"预约" : @"取消预约" ;
 
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:tipString delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] ;
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:title message:tipString delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] ;
     [alertView show] ;
     
+}
+
+/**
+ *  判断是否可以取消预约
+ *
+ *  @return 返回是否可以取消预约 YES 表示可以取消 NO表示不可以取消
+ */
+- (BOOL) canCancelAppointment {
+
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss" ;
+    NSDate * currentDate = [NSDate date] ;
+    
+    // 预约的时间
+    NSString * appointmentDateString = [NSString stringWithFormat:@"%@ %@" , [self.appointmentHour.appointmentDate stringWithoutTime] , self.appointmentHour.startTime] ;
+    NSDate * appointmentDate = [dateFormatter dateFromString:appointmentDateString] ;
+    
+    
+//    NSTimeInterval interval = [appointmentDate timeIntervalSinceDate:currentDate] ;
+    // 在这里将现在的时间加上24小时,然后再与预约的时间进行比较,如果加上24小时的时间仍然小于预约的时间则是可以取消预约的,否则将不能够取消预约
+    BOOL canCancelAppointment = [[currentDate dateByAddingTimeInterval:24 * 3600] compare:appointmentDate] < 0 ;
+    
+
+    return canCancelAppointment ;
 }
 
 #pragma mark - AlertView代理方法
@@ -202,9 +285,109 @@
 
     if (buttonIndex == 1) {
 #warning 这里是点击了确定要预约之后,进行网络请求,然后预约医生该时间段
-        NSLog(@"%@ %@" , self.appointmentHour.startTime , [self.appointmentHour.appointmentDate stringWithChineseDateFormatter]) ;
+//        NSLog(@"%@ %@" , self.appointmentHour.startTime , [self.appointmentHour.appointmentDate stringWithChineseDateFormatter]) ;
+        [self sendRequestAboutAppointment] ;
         
     }
+}
+
+#pragma mark - 网络请求相关
+/**
+ *  进行预约\取消预约
+ */
+- (void) sendRequestAboutAppointment {
+
+    // URL为空就不进行请求
+    if (!self.appointURL) {
+        return ;
+    }
+    
+    // 需要的参数 year month day appointment_hour doctorId user_id
+    NSLog(@"self.appointmentHour.appointmentDate %@" , self.appointmentHour.appointmentDate) ;
+    NSLog(@"%@ date %ld" , self.appointURL , [self.appointmentHour.appointmentDate numberForCurrentDate]) ;
+}
+
+/**
+ *  请求每个不同日期当天每个时间段的预约信息
+ */
+- (void) sendRequestForHoursAppointmentDataWithDate : (NSDate *) date {
+    
+    NSLog(@"请求%@ 日期下的预约信息   " , date) ;
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager] ;
+    //此处设置后返回的默认是NSData的数据
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+//    NSString * urlString = [NSString stringWithFormat:QM_URL_DAYAPPOINTEDDATA , @"1" , @"1"] ;
+    
+    [manager GET:QM_URL_DAYAPPOINTEDDATA parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+//        NSLog(@"%@" , operation) ;
+        
+        NSError * error ;
+        NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error] ;
+        if (error) {
+            NSLog(@"jsonError %@" , error) ;
+        }
+        
+        NSArray * datas = [jsonDict valueForKey:@"data"] ;
+        
+        NSMutableArray * objs = [NSMutableArray array] ;
+                for (NSDictionary * dict in datas) {
+            
+            QMAppointmentHour * appointmentHour = [QMAppointmentHour appointmentHourWithDict:dict] ;
+            
+            if (appointmentHour.hourStatus == QMAppointmentHourStatusRest) {
+                continue ;
+            }
+            appointmentHour.startTime = [self.dateFormatter stringFromDate:[NSDate timeWithNumber:[appointmentHour.hour integerValue]]] ;
+            
+            NSDate * date = [NSDate dateWithDate:[NSDate date] time:appointmentHour.startTime] ;
+            appointmentHour.endTime = [self.dateFormatter stringFromDate:[date dateByAddingTimeInterval:QM_TIMEINTERVAL]] ;
+        
+            
+            [objs addObject:appointmentHour] ;
+        }
+        
+        self.appointmentView.dayAppointments = objs ;
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error %@" , error) ;
+    }] ;
+
+}
+
+/**
+ *  请求当月每天的预约状态信息
+ */
+- (void) sendRequestForDaysAppointmentData {
+
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager] ;
+    //此处设置后返回的默认是NSData的数据
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager GET:QM_URL_MONTHAPPOINTEDDATA parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError * error ;
+        NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error] ;
+        if (error) {
+            NSLog(@"%@" , error) ;
+        }
+        
+        NSArray * datas = [jsonDict valueForKey:@"data"] ;
+        
+        NSMutableArray * objs = [NSMutableArray array] ;
+        for (NSDictionary * dict in datas) {
+            QMAppointmentDay * appointmentDay = [QMAppointmentDay appointmentDayWithDict:dict] ;
+//            NSLog(@"%lu" , appointmentDay.day_status) ;
+            [objs addObject:appointmentDay] ;
+        }
+        self.appointmentView.monthAppointments = objs ;
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error %@" , error) ;
+    }] ;
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -60,4 +60,55 @@
     return date ;
 }
 
+- (NSInteger)numberForCurrentDate {
+
+    // 设置时间格式
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm" ;
+    
+    // 00:00
+    NSDate * TimeZero = [dateFormatter dateFromString:[NSString stringWithFormat:@"%@ 00:00" , [self stringWithoutTime]]] ;
+    
+    // 计算给定时间对应的数字
+    NSTimeInterval interval = [self timeIntervalSinceDate:TimeZero] ;
+    double halfHours = interval / (30 * 60) + 1 ;
+    
+    NSInteger number = halfHours > (NSInteger)halfHours ? (NSInteger)halfHours + 1 : halfHours;
+    return number ;
+    
+}
+
+- (NSString *)stringWithoutTime {
+
+    // 设置时间格式
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"yyyy-MM-dd" ;
+    
+    
+    // 取当前对象的日期字符串
+    NSString * dateString = [dateFormatter stringFromDate:self] ;
+    return dateString ;
+
+}
+
+- (NSString *)timeInDate {
+
+    // 设置时间格式
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"HH:mm:ss" ;
+    
+    return [dateFormatter stringFromDate:self] ;
+}
+
++ (NSDate *)dateWithDate:(NSDate *)date time:(NSString *)time {
+    // 设置时间格式
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss" ;
+    
+    NSString * dateString = [NSString stringWithFormat:@"%@ %@" , [date stringWithoutTime] , time] ;
+    
+    return [dateFormatter dateFromString:dateString] ;
+    
+}
+
 @end

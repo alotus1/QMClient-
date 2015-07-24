@@ -40,13 +40,14 @@
 
 /**
  *  可以预约的起始时间
- */
+
 @property (strong , nonatomic) NSDate * startDate ;
 
 /**
  *  可以预约的结束时间
- */
+
 @property (strong , nonatomic) NSDate * endDate ;
+ */
 
 /**
  *  当前选择的预约日期
@@ -93,6 +94,7 @@
  *  @param day 选择的日期,作为获取数据的下标
  */
 
+/*
 - (void) settingDataSource : (NSInteger) day {
     
 #warning 如果医生自己规定出诊的时间,这个才会用上
@@ -105,7 +107,6 @@
         NSString * timeString = [NSString stringWithFormat:@"%ld:00" , i] ;
         [times addObject:timeString] ;
     }
-    */
 #warning 在控制器中进行网络请求的时候将这个数据填入,每个cell的数据模型为QMAppointmentHour类型
     for (NSDate * date = self.startDate; [date compare:self.endDate]; date = [date dateByAddingTimeInterval:QM_TIMEINTERVAL]) {
 //        NSLog(@"%@" , date) ;
@@ -124,6 +125,7 @@
     // 刷新表格
     [self.tableView reloadData] ;
 }
+*/
 
 #pragma mark - 初始化
 
@@ -183,8 +185,6 @@
         self.tableView = tableView ;
         
         
-//        NSLog(@"%@" , self.dataSource)  ;
-        
         [self setupTime] ;
         
         
@@ -193,26 +193,20 @@
     return self ;
 }
 
+
 - (void) setupTime {
 
-    /***设置起始\结束时间****/
+    /***设置时间参数****/
     
     self.dateFormatter = [[NSDateFormatter alloc] init] ;
     NSLocale * local = [NSLocale systemLocale] ;
     [self.dateFormatter setLocale:local] ;
     
     [self.dateFormatter setDateFormat:@"HH:mm:ss"];
-    //    NSDate* startDate = [[dateformatter dateFromString:@"10:00:00"] currentZoneDate];
-    //
-    //    NSDate * endDate = [[dateformatter dateFromString:@"18:00:00"] currentZoneDate] ;
-    
-    self.startDate = [self.dateFormatter dateFromString:@"12:00:00"] ;
-    self.endDate = [self.dateFormatter dateFromString:@"18:00:00"] ;
     
     self.selectedDate = [NSDate date] ;
     
     
-    /***设置起始\结束时间****/
 }
 
 
@@ -268,7 +262,18 @@
 //    NSLog(@"%@" , self.dayAppointments[indexPath.row]) ;
     // 选择这个时间后可以进行预约,让控制器发送预约请求
     if (self.sendAppointmentRequest) {
-        self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate) ;
+        
+        QMAppointmentHour * appointmentHour = self.dayAppointments[indexPath.row] ;
+        
+        QMAppointmentViewSendAppointRequestType type ;
+        if (appointmentHour.hourStatus == QMAppointmentHourStatusAvailable) {
+#warning 可以预约的状态,这里会调用预约接口
+            type = QMAppointmentViewSendAppointRequestTypeAppoint ;
+        } else if (appointmentHour.hourStatus == QMAppointmentHourStatusAlreadyAppointed) {
+#warning 用户已经预约的情况,这里会取消预约
+            type = QMAppointmentViewSendAppointRequestTypeCancel ;
+        }
+        self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , type) ;
     }
 }
 

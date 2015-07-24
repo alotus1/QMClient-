@@ -46,7 +46,7 @@
     _appointmentDay = appointmentDay ;
     
     // 1.将状态信息显示出来
-    if (appointmentDay.status == QMAppointmentDayStatusEnable) {
+    if (appointmentDay.day_status == QMAppointmentDayStatusEnable) {
         self.tintView.backgroundColor = [UIColor greenColor] ;
         self.stateLabel.text = QM_STRING_AVAILABLE ;
     } else {
@@ -80,12 +80,10 @@
     
     // 取消子控件的隐藏状态
     for (UIView * view in self.subviews) {
-        //            [view removeFromSuperview] ;
         view.hidden = NO ;
     }
     // 开启用户交互
     self.userInteractionEnabled = YES ;
-//    self.backgroundColor = [UIColor yellowColor] ;
     self.dayLabel.text = [NSString stringWithFormat:@"%ld" , calendar.day] ;
     //在这里可以增加一个圆圈来表示当天,使用calendar.isCurrentDay判断
     if (calendar.isCurrentDay) {
@@ -98,7 +96,6 @@
         circleBackView.clipsToBounds = YES ;
     } else
         self.dayLabel.textColor = [UIColor blackColor] ;
-//    self.dayLabel.textColor = calendar.isCurrentDay ? [UIColor lightGrayColor] : [UIColor blackColor] ;
     
     [self setNeedsLayout] ;
 
@@ -118,15 +115,12 @@
         // 显示日期的标签
         UILabel * dayLabel = [[UILabel alloc] init] ;
         dayLabel.textAlignment = NSTextAlignmentCenter ;
-//        dayLabel.contentMode = UIViewContentModeCenter ;
         [self.contentView addSubview:dayLabel] ;
         self.dayLabel = dayLabel ;
         
         // 显示本日的状态(是否可以预约)
         UILabel * stateLabel = [[UILabel alloc] init] ;
         stateLabel.textAlignment = NSTextAlignmentCenter ;
-#warning 可约或者不可约要根据后台数据来判断
-//        stateLabel.text = QM_STRING_AVAILABLE ;
         stateLabel.font = QM_FONT_STATELABEL ;
         [self.contentView addSubview:stateLabel] ;
         self.stateLabel = stateLabel ;

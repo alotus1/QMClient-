@@ -9,9 +9,22 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, QMAppointmentHourStatus) {
+    
+    /**
+     *  默认休息不可预约
+     */
+    QMAppointmentHourStatusRest = 0,
+    /**
+     *  可以预约
+     */
     QMAppointmentHourStatusAvailable,
+    /**
+     *  其他情况下的不可预约
+     */
     QMAppointmentHourStatusUnavilable,
-    QMAppointmentHourStatusFull,
+    /**
+     *  当前用户已约
+     */
     QMAppointmentHourStatusAlreadyAppointed
 };
 
@@ -42,8 +55,14 @@ typedef NS_ENUM(NSUInteger, QMAppointmentHourStatus) {
 @property (strong , nonatomic) NSDate * appointmentDate ;
 
 /**
- *  预约时间对应的预约状态
+ *  预约时间对应的预约状态(枚举)
  */
-@property (assign , nonatomic) QMAppointmentHourStatus status ;
+@property (assign , nonatomic) QMAppointmentHourStatus hourStatus ;
+
+
+- (instancetype)initWithDict : (NSDictionary *) dict ;
++ (instancetype) appointmentHourWithDict : (NSDictionary *) dict ;
+
+
 
 @end

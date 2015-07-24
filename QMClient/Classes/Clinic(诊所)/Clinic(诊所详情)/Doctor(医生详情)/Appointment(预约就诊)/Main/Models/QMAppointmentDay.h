@@ -9,8 +9,18 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, QMAppointmentDayStatus) {
-    QMAppointmentDayStatusEnable,
-    QMAppointmentDayStatusDisable
+    /**
+     *  可预约
+     */
+    QMAppointmentDayStatusEnable = 0,
+    /**
+     *  不可预约
+     */
+    QMAppointmentDayStatusDisable ,
+    /**
+     *  已经约满
+     */
+    QMAppointmentDayStatusFull
 };
 
 /**
@@ -26,8 +36,11 @@ typedef NS_ENUM(NSUInteger, QMAppointmentDayStatus) {
 /**
  *  当日医生的预约状态
  */
-@property (assign , nonatomic) QMAppointmentDayStatus status ;
+@property (assign , nonatomic) QMAppointmentDayStatus day_status ;
 
+
+- (instancetype)initWithDict : (NSDictionary *) dict ;
++ (instancetype) appointmentDayWithDict : (NSDictionary *) dict ;
 
 
 

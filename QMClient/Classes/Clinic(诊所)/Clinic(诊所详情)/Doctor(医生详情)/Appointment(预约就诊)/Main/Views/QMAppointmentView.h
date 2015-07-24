@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class QMAppointmentHour ;
+
+
+typedef NS_ENUM(NSUInteger, QMAppointmentViewSendAppointRequestType) {
+    /**
+     *  发送请求类型为请求预约
+     */
+    QMAppointmentViewSendAppointRequestTypeAppoint,
+    /**
+     *  请求类型为取消预约
+     */
+    QMAppointmentViewSendAppointRequestTypeCancel
+};
 
 /**
  *  预约视图
@@ -44,7 +57,7 @@
 @property (copy , nonatomic) void(^wantNewDateAppointmentInformation)(NSDate * date) ;
 
 
-@property (copy , nonatomic) void(^sendAppointmentRequest)(QMAppointmentHour * appointmentHour , NSDate * selectedDate) ;
+@property (copy , nonatomic) void(^sendAppointmentRequest)(QMAppointmentHour * appointmentHour , NSDate * selectedDate , QMAppointmentViewSendAppointRequestType requestType) ;
 
 
 @end

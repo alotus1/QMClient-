@@ -42,11 +42,39 @@
  *
  *  @param number 给定的数字
  *
- *  @return 返回给定数组对应的48小时的时间划分
+ *  @return 返回给定数组对应的48小时的时间划分(这个NSDate对象在取数值的时候需要使用"00:00"的格式转化成字符串)
  */
 + (NSDate *) timeWithNumber : (NSInteger) number ;
 
+/**
+ *  给定一个时间,以半小时为划分,获得一个1-48的数字
+ *
+ *  @return 返回给定时间对应的数字
+ */
+- (NSInteger) numberForCurrentDate ;
 
+/**
+ *  获得日期里的年月日信息,不需要时间,返回年月日的字符串(yyyy-mm-dd)
+ *
+ *  @return 返回年月日的字符串(yyyy-mm-dd)
+ */
+- (NSString *) stringWithoutTime ;
 
+/**
+ *  获得一个对象,用给定的日期和时间来拼接
+ *
+ *  @param date 年月日
+ *  @param time 时间
+ *
+ *  @return 拼接好的时间
+ */
++ (NSDate *) dateWithDate : (NSDate *) date time : (NSString *) time ;
+
+/**
+ *  获得日期中的时间
+ *
+ *  @return 返回日期中的时间(格式HH:mm:ss)
+ */
+- (NSString *) timeInDate ;
 
 @end

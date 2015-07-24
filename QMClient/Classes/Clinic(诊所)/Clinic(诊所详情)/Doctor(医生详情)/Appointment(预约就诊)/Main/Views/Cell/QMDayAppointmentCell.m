@@ -13,7 +13,8 @@
 #import "Masonry.h"
 
 #define QM_STRING_AVAILIABEL @"可预约"
-#define QM_STRING_UNAVILIALBE @"已预约"
+#define QM_STRING_UNAVILIALBE @"不可预约"
+#define QM_STRING_ALREADYAPPOINTED @"已预约"
 
 #define QM_FONT_STATUS [UIFont systemFontOfSize:14]
 #define QM_FONT_TIME [UIFont systemFontOfSize:11]
@@ -21,6 +22,7 @@
 
 #define QM_COLOR_UNAVILIABLESTATUS [UIColor grayColor]
 #define QM_COLOR_AVILIABLESTATUS [UIColor blackColor]
+#define QM_COLOR_ALREADYSTATUS [UIColor redColor]
 
 #define QM_SMALL_PADDING 5
 
@@ -71,23 +73,47 @@
     self.endTimeLabel.text = self.appointmentHour.endTime ;
     
     // 在这里判断该时间段的预约状态,然后决定diliverView的颜色
-    if (self.appointmentHour.status == QMAppointmentHourStatusAvailable) {
-        
-        self.statusLabel.text = QM_STRING_AVAILIABEL ;
-        self.statusLabel.textColor = QM_COLOR_AVILIABLESTATUS ;
-        self.backgroundColor = [UIColor whiteColor] ;
-        self.userInteractionEnabled = YES ;
-        self.diliverView.backgroundColor = [UIColor greenColor] ;
-    } else {
-    
-        self.statusLabel.text = QM_STRING_UNAVILIALBE ;
-        self.statusLabel.textColor = QM_COLOR_UNAVILIABLESTATUS ;
-        self.backgroundColor = [UIColor lightGrayColor] ;
-        self.userInteractionEnabled = NO ;
-        self.diliverView.backgroundColor = [UIColor grayColor] ;
+    switch (self.appointmentHour.hourStatus) {
+        case QMAppointmentHourStatusAvailable: {
+            self.statusLabel.text = QM_STRING_AVAILIABEL ;
+            self.statusLabel.textColor = QM_COLOR_AVILIABLESTATUS ;
+            self.backgroundColor = [UIColor whiteColor] ;
+            self.userInteractionEnabled = YES ;
+            self.diliverView.backgroundColor = [UIColor greenColor] ;
+            break;
+            
+        }
+        case QMAppointmentHourStatusUnavilable: {
+            self.statusLabel.text = QM_STRING_UNAVILIALBE ;
+            self.statusLabel.textColor = QM_COLOR_UNAVILIABLESTATUS ;
+            self.backgroundColor = [UIColor lightGrayColor] ;
+            self.userInteractionEnabled = NO ;
+            self.diliverView.backgroundColor = [UIColor grayColor] ;
+            break;
+            
+        }
+
+        case QMAppointmentHourStatusAlreadyAppointed: {
+            // 已经预约
+            self.statusLabel.text = QM_STRING_ALREADYAPPOINTED ;
+            self.statusLabel.textColor = QM_COLOR_ALREADYSTATUS ;
+            self.backgroundColor = [UIColor whiteColor] ;
+            self.userInteractionEnabled = YES ;
+            self.diliverView.backgroundColor = [UIColor redColor] ;
+            break;
+            
+        }
+
+        case QMAppointmentHourStatusRest: {
+            self.statusLabel.text = QM_STRING_UNAVILIALBE ;
+            self.statusLabel.textColor = QM_COLOR_UNAVILIABLESTATUS ;
+            self.backgroundColor = [UIColor lightGrayColor] ;
+            self.userInteractionEnabled = NO ;
+            self.diliverView.backgroundColor = [UIColor grayColor] ;
+            break;
+            
+        }
     }
-    
-    
 }
 
 

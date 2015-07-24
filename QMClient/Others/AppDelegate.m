@@ -44,7 +44,8 @@
     
     NSDateFormatter * datefor = [[NSDateFormatter alloc] init] ;
     datefor.dateFormat = @"HH:mm" ;
-    NSLog(@"%@" , [datefor stringFromDate:[NSDate timeWithNumber : 48]]) ;
+//    NSLog(@"%@" , [datefor stringFromDate:[NSDate timeWithNumber : 48]]) ;
+    NSDate * date = [datefor dateFromString:@"00:30"] ;
     
     
 

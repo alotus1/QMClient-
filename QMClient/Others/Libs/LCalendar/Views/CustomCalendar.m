@@ -11,6 +11,8 @@
 #import "QMCalendarCell.h"
 #import "QMCalendar.h"
 
+#import "QMAppointmentDay.h"
+
 #import "NSDate+CQ.h"
 
 #define QM_SCREENWIDTH [UIScreen mainScreen].bounds.size.width
@@ -99,12 +101,6 @@
 //            [self performSelector:selector] ;
             [view performSelector:selector withObject:nil afterDelay:0] ;
             
-            NSLog(@"----%@" , view.currentDate) ;
-            // 调用block通知上一层进行相应的操作
-            if (view.changeMonthBlock) {
-                
-                view.changeMonthBlock(view , self.currentDate) ;
-            }
         }] ;
         [self addSubview:weekView] ;
         self.weekView = weekView ;
@@ -230,6 +226,13 @@
     
     [self settingCalendarDataSource] ;
     
+    
+    // 调用block通知上一层进行相应的操作
+    if (self.changeMonthBlock) {
+        
+        self.changeMonthBlock(self , self.currentDate) ;
+    }
+    
 }
 
 /**
@@ -246,9 +249,14 @@
     self.currentDate = nextDate ;
     components = [self.gregorianCalendar components:self.calendarUnit fromDate:nextDate] ;
     
-//    NSLog(@"-----%@" , nextDate) ;
     
     [self settingCalendarDataSource] ;
+    
+    // 调用block通知上一层进行相应的操作
+    if (self.changeMonthBlock) {
+        
+        self.changeMonthBlock(self , self.currentDate) ;
+    }
 }
 
 
@@ -308,7 +316,11 @@
 
     QMCalendarCell * cell = (QMCalendarCell *)[QMCalendarCell calendarCellWithCollectionView:collectionView andIndexPath:indexPath] ;
     cell.calendar = self.dataSource[indexPath.item] ;
-    cell.appointmentDay = self.monthAppointments[indexPath.item] ;
+    if (indexPath.item >= self.firstWeekdayOfMonth - 1 && indexPath.item - self.firstWeekdayOfMonth + 1 < self.monthAppointments.count) {
+        // 这个indexPath.item在取monthAppointment时候需要修正
+        QMAppointmentDay * appointmentDay = self.monthAppointments[indexPath.row - self.firstWeekdayOfMonth + 1] ;
+        cell.appointmentDay = appointmentDay ;
+    }
     return cell ;
     
 }
@@ -319,12 +331,6 @@
     return CGSizeMake(QM_SCREENWIDTH / 7, QM_CELLHEIGHT) ;
 }
 
-/*
-- (void) selectedDayItemWithBlock:(void (^)(NSInteger))selectDayItemBlock {
-
-    self.selectDayItemBlock = selectDayItemBlock ;
-}
- */
 
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -333,7 +339,7 @@
     components.day = indexPath.item - self.firstWeekdayOfMonth + 2 ;
     self.weekView.currentDate = [components.date currentZoneDate] ;
     // 选择的日期比实际的偏移了self.firstWeekdayOfMonth + 2天
-//    NSLog(@"%ld" , indexPath.item - self.firstWeekdayOfMonth + 2) ;
+    NSLog(@"%ld" , indexPath.item - self.firstWeekdayOfMonth) ;
 #warning 在这里预留接口,点击相应的日期进行相应的操作
     if (self.selectDayItemBlock) {
         self.selectDayItemBlock([components.date currentZoneDate]) ;
