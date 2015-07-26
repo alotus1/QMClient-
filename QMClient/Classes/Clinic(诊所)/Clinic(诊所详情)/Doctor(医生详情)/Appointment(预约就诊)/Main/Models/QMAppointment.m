@@ -11,9 +11,28 @@
 
 @implementation QMAppointment
 
+- (instancetype)initWithDict:(NSDictionary *)dict {
+    if (self = [super init]) {
+        [self setValuesForKeysWithDictionary:dict] ;
+    }
+    return self ;
+}
+
++ (instancetype)appointmentWithDict:(NSDictionary *)dict {
+    
+    return [[self alloc] initWithDict:dict] ;
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    
+    if ([key isEqualToString:@"id"]) {
+        _identity = [value integerValue] ;
+    }
+}
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ , startTime %@", _day , _startTime];
+    return [NSString stringWithFormat:@"%ld", _day];
 }
 
 

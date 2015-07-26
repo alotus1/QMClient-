@@ -28,15 +28,13 @@
     
     
     QMHomeViewController * homeVc = [[QMHomeViewController alloc] init] ;
-    [self addChildViewController:homeVc title:@"主页" image:@"" selectedImage:@""] ;
+    [self addChildViewController:homeVc title:@"主页" image:@"tabbar_home" selectedImage:@""] ;
     
     QMClinicViewController * clinicVc = [[QMClinicViewController alloc] init] ;
-    [self addChildViewController:clinicVc title:@"诊所" image:@"" selectedImage:@""] ;
+    [self addChildViewController:clinicVc title:@"诊所" image:@"tabbar_clinic" selectedImage:@""] ;
     
     QMMeViewController * meVc = [[QMMeViewController alloc] init] ;
-    [self addChildViewController:meVc title:@"我" image:@"" selectedImage:@""] ;
-    
-    
+    [self addChildViewController:meVc title:@"我" image:@"tabbar_me" selectedImage:@""] ;
     
 
 }

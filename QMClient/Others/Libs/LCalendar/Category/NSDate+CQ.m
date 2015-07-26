@@ -111,4 +111,37 @@
     
 }
 
+/**
+ *  日期中的年
+ *
+ *  @return 日期中的年
+ */
+- (NSInteger) yearForDate {
+
+    NSDateComponents * components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:self] ;
+    return components.year ;
+}
+
+/**
+ *  日期中的月
+ *
+ *  @return 日期中的月
+ */
+- (NSInteger) monthForDate {
+
+    NSDateComponents * components = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:self] ;
+    return components.month ;
+}
+
+/**
+ *  日期中的天
+ *
+ *  @return 日期中的天
+ */
+- (NSInteger) dayForDate {
+
+    NSDateComponents * components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:self] ;
+    return components.day ;
+}
+
 @end

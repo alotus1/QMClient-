@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define QM_CELL_NOTIFICATION @"changeCellSelected"
+#define QM_CELL_DESELECTEDSTYLE @"cellDeselectedStyle"
+
 @class QMCalendar ;
 @class QMAppointmentDay ;
 
@@ -25,6 +28,11 @@
  *  当日的预约状态
  */
 @property (strong , nonatomic) QMAppointmentDay * appointmentDay ;
+
+/**
+ *  保存自己在collectionView中的index
+ */
+@property (strong , nonatomic) NSIndexPath * indexPath ;
 
 /**
  *  快速获取一个cell

@@ -21,7 +21,12 @@
 /**
  *  是否是当天
  */
-@property (assign , nonatomic) BOOL isCurrentDay ;
+@property (assign , nonatomic) BOOL isSelectedDay ;
+
+/**
+ *  显示这个日期的字体颜色
+ */
+@property (strong , nonatomic) UIColor * dayColor ;
 
 
 

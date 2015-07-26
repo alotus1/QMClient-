@@ -16,9 +16,9 @@
 #import "NSDate+CQ.h"
 
 #define QM_SCREENWIDTH [UIScreen mainScreen].bounds.size.width
-#define QM_CELLHEIGHT 60
-// 这里设置宽度为整个屏幕的宽度
-#define QM_HEADERHEIGHT QM_SCREENWIDTH * 0.2
+#define QM_CELLHEIGHT QM_SCALE_HEIGHT(50)
+// 头部的高度
+#define QM_HEADERHEIGHT QM_SCALE_HEIGHT(75)
 
 @interface CustomCalendar () <UICollectionViewDelegateFlowLayout , UICollectionViewDataSource>
 
@@ -67,6 +67,12 @@
  */
 @property (strong , nonatomic) NSDateComponents * currentComponents ;
 
+/**
+ *  选中的cell的indexPath
+ */
+@property (strong , nonatomic) NSIndexPath * selectedIndexPath ;
+
+
 @end
 
 @implementation CustomCalendar
@@ -77,6 +83,8 @@
     
     // 刷新colletionView的数据
     [self.calendarView reloadData] ;
+    
+    
 
 }
 
@@ -117,8 +125,9 @@
         self.calendarView = calendarView ;
         
         calendarView.backgroundView = nil ;
-        calendarView.backgroundColor = [UIColor clearColor] ;
-        
+//        calendarView.backgroundColor = [UIColor blackColor];//
+        calendarView.backgroundColor = [UIColor colorWithRed:244/255.0 green:245/255.0 blue:246/255.0 alpha:1];
+
         [self settingData] ;
         
         
@@ -137,7 +146,7 @@
     self.currentDate = [NSDate date] ;
     
     
-    self.calendarUnit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitDay | NSCalendarUnitCalendar ;
+    self.calendarUnit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitWeekday ;
     
     // 初始化时间组件,方便往后使用
     self.currentComponents = [[NSCalendar currentCalendar] components:self.calendarUnit fromDate:[NSDate date]] ;
@@ -186,7 +195,7 @@
     for (NSInteger i = 0; i < weekday - 1 ; i++) {
         QMCalendar * calendar = [[QMCalendar alloc] init] ;
         calendar.day = -1 ;
-        calendar.isCurrentDay = NO ;
+        calendar.isSelectedDay = NO ;
         [dataSource addObject:calendar] ;
     }
     
@@ -197,7 +206,18 @@
         QMCalendar * calendar = [[QMCalendar alloc] init] ;
         calendar.day = index + 1 ;
         // 判断是否是当天,如果是当天isCurrentDay就标记为YES
-        calendar.isCurrentDay = [self isEqualToCurrentDate:components] && components.day == index + 1 ? YES : NO ;
+        if ([self isEqualToCurrentDate:components] && components.day == index + 1) {
+            calendar.isSelectedDay = YES ;
+            self.selectedIndexPath = [NSIndexPath indexPathForItem:index + self.firstWeekdayOfMonth - 1 inSection:0] ;
+            NSLog(@"%ld" , self.selectedIndexPath.item) ;
+        } else {
+            calendar.isSelectedDay = NO ;
+        }
+//        components.day = calendar.day ;
+//        NSDate * date = [self.gregorianCalendar dateFromComponents:components] ;
+//        components = [self.gregorianCalendar components:self.calendarUnit fromDate:date] ;
+        // 设置日期显示的字体颜色
+        calendar.dayColor = (components.weekday == 1 || components.weekday == 7) ? [UIColor colorWithColorString:@"c0c0c0"] : [UIColor colorWithColorString:@"000000"] ;
         [dataSource addObject:calendar] ;
     }
     self.dataSource = dataSource ;
@@ -215,17 +235,17 @@
     
 
     NSDateComponents * components = [self.gregorianCalendar components:self.calendarUnit fromDate:self.currentDate] ;
+//    NSDateComponents * currentDateComponents = [self.gregorianCalendar components:self.calendarUnit fromDate:[NSDate date]] ;
     components.month ++ ;
 #warning 在这里需要进行判断,年月是否与当前的日期相同,相同则不需要更改day属性
     components.day = [self isEqualToCurrentDate:components] ? self.currentComponents.day : 1 ;
 #warning 在这里获取的nextDate日期不正确,但是在settingCalendarDataSource方法里面进行了矫正
     NSDate * nextDate = [self.gregorianCalendar dateFromComponents:components] ;
     self.currentDate = nextDate ;
-    components = [self.gregorianCalendar components:self.calendarUnit fromDate:nextDate] ;
+    self.currentComponents = [self.gregorianCalendar components:self.calendarUnit fromDate:nextDate] ;
     
     
     [self settingCalendarDataSource] ;
-    
     
     // 调用block通知上一层进行相应的操作
     if (self.changeMonthBlock) {
@@ -242,12 +262,14 @@
     
 
     NSDateComponents * components = [self.gregorianCalendar components:self.calendarUnit fromDate:self.currentDate] ;
+    
+//    NSDateComponents * currentDateComponents = [self.gregorianCalendar components:self.calendarUnit fromDate:[[NSDate date] currentZoneDate]] ;
     components.month -- ;
     components.day = [self isEqualToCurrentDate:components] ? self.currentComponents.day : 1 ;
     // 在这里获取的nextDate日期不正确,但是在settingCalendarDataSource方法里面进行了矫正
     NSDate * nextDate = [self.gregorianCalendar dateFromComponents:components] ;
     self.currentDate = nextDate ;
-    components = [self.gregorianCalendar components:self.calendarUnit fromDate:nextDate] ;
+    self.currentComponents = [self.gregorianCalendar components:self.calendarUnit fromDate:nextDate] ;
     
     
     [self settingCalendarDataSource] ;
@@ -334,12 +356,36 @@
 
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    QMCalendarCell * cell = (QMCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath] ;
+    //    NSLog(@"cell %p" , cell) ;
+    NSNotificationCenter * noti = [NSNotificationCenter defaultCenter] ;
+    if (![indexPath isEqual:self.selectedIndexPath]) {
+
+//        QMLog(@"pre %p %d" , self.selectedCell ,self.selectedCell.calendar.isSelectedDay) ;
+//        self.selectedCell.calendar.isSelectedDay = NO ;
+        QMCalendarCell * previousCell = (QMCalendarCell *)[collectionView cellForItemAtIndexPath:self.selectedIndexPath] ;
+        previousCell.calendar.isSelectedDay = NO ;
+        
+//        cell.selected = YES ;
+//        self.selectedCell.selected = NO ;
+        cell.calendar.isSelectedDay = YES ;
+        
+//        QMLog(@"cell %p %d" , cell ,cell.calendar.isSelectedDay) ;
+        // 发送上一个cell的选中状态改变的通知
+//        [noti postNotificationName:QM_CELL_DESELECTEDSTYLE object:self.selectedCell.indexPath] ;
+        self.selectedIndexPath = indexPath ;
+    }
+
+//    [noti postNotificationName:QM_CELL_NOTIFICATION object:indexPath] ;
+    [collectionView reloadData] ;
+    
 
     NSDateComponents * components = [self.gregorianCalendar components:self.calendarUnit fromDate:self.currentDate] ;
     components.day = indexPath.item - self.firstWeekdayOfMonth + 2 ;
     self.weekView.currentDate = [components.date currentZoneDate] ;
     // 选择的日期比实际的偏移了self.firstWeekdayOfMonth + 2天
-    NSLog(@"%ld" , indexPath.item - self.firstWeekdayOfMonth) ;
+//    NSLog(@"%ld" , indexPath.item - self.firstWeekdayOfMonth) ;
 #warning 在这里预留接口,点击相应的日期进行相应的操作
     if (self.selectDayItemBlock) {
         self.selectDayItemBlock([components.date currentZoneDate]) ;

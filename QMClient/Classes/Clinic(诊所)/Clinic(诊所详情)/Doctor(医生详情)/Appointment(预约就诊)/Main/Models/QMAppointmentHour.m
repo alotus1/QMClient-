@@ -25,7 +25,12 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
-    NSLog(@"%@" , key) ;
+//    NSLog(@"%@" , key) ;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%ld", _hourStatus];
 }
 
 @end

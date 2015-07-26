@@ -25,7 +25,11 @@ typedef NS_ENUM(NSUInteger, QMAppointmentHourStatus) {
     /**
      *  当前用户已约
      */
-    QMAppointmentHourStatusAlreadyAppointed
+    QMAppointmentHourStatusAlreadyAppointedByMe ,
+    /**
+     *  该时间段已经被别的用户预约
+     */
+    QMAppointmentHourStatusAlreadyAppointedByOthers
 };
 
 /**

@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 
 #import "QMTabbarController.h"
+#import "QMDataBaseManager.h"
 
 #import "NSDate+CQ.h"
+
+#import "QMSandBox.h"
 
 //#import "QMRegisterAndLoginController.h"
 //#import "QMNavigationController.h"
@@ -42,18 +45,34 @@
     [QM_USERDEFAULT setBool:NO forKey:QM_USERDEFAULT_ISLOGIN] ;
     
     
-    NSDateFormatter * datefor = [[NSDateFormatter alloc] init] ;
-    datefor.dateFormat = @"HH:mm" ;
-//    NSLog(@"%@" , [datefor stringFromDate:[NSDate timeWithNumber : 48]]) ;
-    NSDate * date = [datefor dateFromString:@"00:30"] ;
-    
-    
 
     [self.window makeKeyAndVisible] ;
     
+    [self createDatabase] ;
+    [self syncAppointmentInfo] ;
+    NSLog(@"%@" , [QMSandBox pathForDocuments]) ;
     
     
     return YES;
+}
+
+/**
+ *  从后台数据库同步当前用户的预约信息
+ */
+- (void) syncAppointmentInfo {
+
+    
+}
+- (void) createDatabase {
+
+    // 创建项目数据库
+    // CREATE TABLE appointment ( id integer primary key , year integer not null , month integer not null , day integer not null,doctorId text  not null, userId text not null) ;
+    NSString * databasePath = [QMDataBaseManager createDataBaseWithDataBaseName:@"QMClient"] ;
+    
+    // 创建预约表
+    NSString * sql = [NSString stringWithFormat:@"CREATE TABLE %@ ( id integer primary key , year integer not null , month integer not null , day integer not null,doctorId text not null, hour integer not null) ;" , QM_USERDEFAULTS_APPOINTTABLE] ;
+    [QMDataBaseManager createTableInDataBase:databasePath andSql:sql andDefaultsKey:QM_USERDEFAULTS_APPOINTEXIST] ;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

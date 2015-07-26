@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD66A87B1B639BD3002F4234 /* UIColor+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = AD66A87A1B639BD3002F4234 /* UIColor+CQ.m */; };
 		AD7896F61B61E3BC004FEF84 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896E41B61E3BC004FEF84 /* AFHTTPRequestOperation.m */; };
 		AD7896F71B61E3BC004FEF84 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896E61B61E3BC004FEF84 /* AFHTTPRequestOperationManager.m */; };
 		AD7896F81B61E3BC004FEF84 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896E81B61E3BC004FEF84 /* AFHTTPSessionManager.m */; };
@@ -16,6 +17,14 @@
 		AD7896FC1B61E3BC004FEF84 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896F11B61E3BC004FEF84 /* AFURLRequestSerialization.m */; };
 		AD7896FD1B61E3BC004FEF84 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896F31B61E3BC004FEF84 /* AFURLResponseSerialization.m */; };
 		AD7896FE1B61E3BC004FEF84 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896F51B61E3BC004FEF84 /* AFURLSessionManager.m */; };
+		AD78970B1B622E40004FEF84 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7897011B622E40004FEF84 /* FMDatabase.m */; };
+		AD78970C1B622E40004FEF84 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7897031B622E40004FEF84 /* FMDatabaseAdditions.m */; };
+		AD78970D1B622E40004FEF84 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7897051B622E40004FEF84 /* FMDatabasePool.m */; };
+		AD78970E1B622E40004FEF84 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7897071B622E40004FEF84 /* FMDatabaseQueue.m */; };
+		AD78970F1B622E40004FEF84 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = AD78970A1B622E40004FEF84 /* FMResultSet.m */; };
+		AD7897111B622E5A004FEF84 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7897101B622E5A004FEF84 /* libsqlite3.0.dylib */; };
+		AD7897171B622EFE004FEF84 /* QMSandBox.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7897161B622EFE004FEF84 /* QMSandBox.m */; };
+		AD78971B1B62303F004FEF84 /* QMDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD78971A1B62303F004FEF84 /* QMDataBaseManager.m */; };
 		AD97DBEB1B5F2BB7003B864F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBEA1B5F2BB7003B864F /* main.m */; };
 		AD97DBFF1B5F2BB7003B864F /* QMClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBFE1B5F2BB7003B864F /* QMClientTests.m */; };
 		AD97DC211B5F3A24003B864F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC1B1B5F3A24003B864F /* AppDelegate.m */; };
@@ -51,6 +60,7 @@
 		AD97DD541B5F9B29003B864F /* CustomCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DD4D1B5F9B29003B864F /* CustomCalendar.m */; };
 		AD97DD551B5F9B29003B864F /* QMCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DD4F1B5F9B29003B864F /* QMCalendarCell.m */; };
 		AD97DD561B5F9B29003B864F /* QMWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DD511B5F9B29003B864F /* QMWeekView.m */; };
+		AD9FCA1E1B64A3FC00E08D89 /* QMCalendarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCA1D1B64A3FC00E08D89 /* QMCalendarButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD66A8791B639BD3002F4234 /* UIColor+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CQ.h"; sourceTree = "<group>"; };
+		AD66A87A1B639BD3002F4234 /* UIColor+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CQ.m"; sourceTree = "<group>"; };
 		AD7896E11B61E2F1004FEF84 /* RequestURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestURL.h; sourceTree = "<group>"; };
 		AD7896E31B61E3BC004FEF84 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		AD7896E41B61E3BC004FEF84 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -84,6 +96,22 @@
 		AD7896F31B61E3BC004FEF84 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		AD7896F41B61E3BC004FEF84 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		AD7896F51B61E3BC004FEF84 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		AD7897001B622E40004FEF84 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		AD7897011B622E40004FEF84 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		AD7897021B622E40004FEF84 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		AD7897031B622E40004FEF84 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		AD7897041B622E40004FEF84 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		AD7897051B622E40004FEF84 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		AD7897061B622E40004FEF84 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		AD7897071B622E40004FEF84 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		AD7897081B622E40004FEF84 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		AD7897091B622E40004FEF84 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		AD78970A1B622E40004FEF84 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		AD7897101B622E5A004FEF84 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		AD7897151B622EFE004FEF84 /* QMSandBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSandBox.h; sourceTree = "<group>"; };
+		AD7897161B622EFE004FEF84 /* QMSandBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSandBox.m; sourceTree = "<group>"; };
+		AD7897191B62303F004FEF84 /* QMDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMDataBaseManager.h; sourceTree = "<group>"; };
+		AD78971A1B62303F004FEF84 /* QMDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMDataBaseManager.m; sourceTree = "<group>"; };
 		AD97DBE51B5F2BB7003B864F /* QMClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD97DBE91B5F2BB7003B864F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD97DBEA1B5F2BB7003B864F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -159,6 +187,8 @@
 		AD97DD4F1B5F9B29003B864F /* QMCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMCalendarCell.m; sourceTree = "<group>"; };
 		AD97DD501B5F9B29003B864F /* QMWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWeekView.h; sourceTree = "<group>"; };
 		AD97DD511B5F9B29003B864F /* QMWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWeekView.m; sourceTree = "<group>"; };
+		AD9FCA1C1B64A3FC00E08D89 /* QMCalendarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMCalendarButton.h; sourceTree = "<group>"; };
+		AD9FCA1D1B64A3FC00E08D89 /* QMCalendarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMCalendarButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD7897111B622E5A004FEF84 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +210,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD66A8781B639BBD002F4234 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				AD66A8791B639BD3002F4234 /* UIColor+CQ.h */,
+				AD66A87A1B639BD3002F4234 /* UIColor+CQ.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		AD7896E21B61E3BC004FEF84 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +245,59 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		AD7896FF1B622E40004FEF84 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				AD7897001B622E40004FEF84 /* FMDatabase.h */,
+				AD7897011B622E40004FEF84 /* FMDatabase.m */,
+				AD7897021B622E40004FEF84 /* FMDatabaseAdditions.h */,
+				AD7897031B622E40004FEF84 /* FMDatabaseAdditions.m */,
+				AD7897041B622E40004FEF84 /* FMDatabasePool.h */,
+				AD7897051B622E40004FEF84 /* FMDatabasePool.m */,
+				AD7897061B622E40004FEF84 /* FMDatabaseQueue.h */,
+				AD7897071B622E40004FEF84 /* FMDatabaseQueue.m */,
+				AD7897081B622E40004FEF84 /* FMDB.h */,
+				AD7897091B622E40004FEF84 /* FMResultSet.h */,
+				AD78970A1B622E40004FEF84 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		AD7897121B622E74004FEF84 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AD7897101B622E5A004FEF84 /* libsqlite3.0.dylib */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		AD7897131B622EEC004FEF84 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				AD7897181B623030004FEF84 /* database */,
+				AD7897141B622EFE004FEF84 /* sandBox */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		AD7897141B622EFE004FEF84 /* sandBox */ = {
+			isa = PBXGroup;
+			children = (
+				AD7897151B622EFE004FEF84 /* QMSandBox.h */,
+				AD7897161B622EFE004FEF84 /* QMSandBox.m */,
+			);
+			path = sandBox;
+			sourceTree = "<group>";
+		};
+		AD7897181B623030004FEF84 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				AD7897191B62303F004FEF84 /* QMDataBaseManager.h */,
+				AD78971A1B62303F004FEF84 /* QMDataBaseManager.m */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
 		AD97DBDC1B5F2BB7003B864F = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +319,7 @@
 		AD97DBE71B5F2BB7003B864F /* QMClient */ = {
 			isa = PBXGroup;
 			children = (
+				AD7897121B622E74004FEF84 /* Framework */,
 				AD97DC081B5F3A24003B864F /* Classes */,
 				AD97DC191B5F3A24003B864F /* Others */,
 				AD97DBE81B5F2BB7003B864F /* Supporting Files */,
@@ -378,6 +472,8 @@
 		AD97DC191B5F3A24003B864F /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				AD66A8781B639BBD002F4234 /* Category */,
+				AD7897131B622EEC004FEF84 /* Tools */,
 				AD97DC791B5F6837003B864F /* Libs */,
 				AD97DC1A1B5F3A24003B864F /* AppDelegate.h */,
 				AD97DC1B1B5F3A24003B864F /* AppDelegate.m */,
@@ -423,6 +519,7 @@
 		AD97DC791B5F6837003B864F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				AD7896FF1B622E40004FEF84 /* fmdb */,
 				AD7896E21B61E3BC004FEF84 /* AFNetworking */,
 				AD97DD441B5F9B29003B864F /* LCalendar */,
 				AD97DC7A1B5F6851003B864F /* Masonry */,
@@ -730,6 +827,8 @@
 				AD97DD4D1B5F9B29003B864F /* CustomCalendar.m */,
 				AD97DD4E1B5F9B29003B864F /* QMCalendarCell.h */,
 				AD97DD4F1B5F9B29003B864F /* QMCalendarCell.m */,
+				AD9FCA1C1B64A3FC00E08D89 /* QMCalendarButton.h */,
+				AD9FCA1D1B64A3FC00E08D89 /* QMCalendarButton.m */,
 				AD97DD501B5F9B29003B864F /* QMWeekView.h */,
 				AD97DD511B5F9B29003B864F /* QMWeekView.m */,
 			);
@@ -841,8 +940,11 @@
 				AD97DD2B1B5F9A33003B864F /* QMAppointmentViewController.m in Sources */,
 				AD97DC311B5F3E51003B864F /* QMRegisterAndLoginController.m in Sources */,
 				AD97DD2F1B5F9A33003B864F /* QMDayAppointmentCell.m in Sources */,
+				AD78970C1B622E40004FEF84 /* FMDatabaseAdditions.m in Sources */,
 				AD7896F71B61E3BC004FEF84 /* AFHTTPRequestOperationManager.m in Sources */,
 				AD97DC211B5F3A24003B864F /* AppDelegate.m in Sources */,
+				AD78971B1B62303F004FEF84 /* QMDataBaseManager.m in Sources */,
+				AD78970D1B622E40004FEF84 /* FMDatabasePool.m in Sources */,
 				AD97DC991B5F6851003B864F /* MASViewAttribute.m in Sources */,
 				AD97DC981B5F6851003B864F /* MASLayoutConstraint.m in Sources */,
 				AD97DC9C1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -852,12 +954,16 @@
 				AD97DD2C1B5F9A33003B864F /* QMAppointment.m in Sources */,
 				AD97DD0C1B5F6D1E003B864F /* QMDoctorViewController.m in Sources */,
 				AD7896F81B61E3BC004FEF84 /* AFHTTPSessionManager.m in Sources */,
+				AD66A87B1B639BD3002F4234 /* UIColor+CQ.m in Sources */,
 				AD97DD2E1B5F9A33003B864F /* QMAppointmentHour.m in Sources */,
 				AD7896F91B61E3BC004FEF84 /* AFNetworkReachabilityManager.m in Sources */,
 				AD97DC2C1B5F3C15003B864F /* QMTabbarController.m in Sources */,
 				AD7896FB1B61E3BC004FEF84 /* AFURLConnectionOperation.m in Sources */,
+				AD9FCA1E1B64A3FC00E08D89 /* QMCalendarButton.m in Sources */,
 				AD97DC411B5F438A003B864F /* QMNavigationController.m in Sources */,
 				AD97DC951B5F6851003B864F /* MASCompositeConstraint.m in Sources */,
+				AD7897171B622EFE004FEF84 /* QMSandBox.m in Sources */,
+				AD78970F1B622E40004FEF84 /* FMResultSet.m in Sources */,
 				AD97DC9B1B5F6851003B864F /* NSArray+MASAdditions.m in Sources */,
 				AD97DC9E1B5F6851003B864F /* MMPlaceHolder.m in Sources */,
 				AD7896F61B61E3BC004FEF84 /* AFHTTPRequestOperation.m in Sources */,
@@ -875,6 +981,8 @@
 				AD97DC9A1B5F6851003B864F /* MASViewConstraint.m in Sources */,
 				AD97DD111B5F6D85003B864F /* QMClinicDetailViewController.m in Sources */,
 				AD97DC961B5F6851003B864F /* MASConstraint.m in Sources */,
+				AD78970E1B622E40004FEF84 /* FMDatabaseQueue.m in Sources */,
+				AD78970B1B622E40004FEF84 /* FMDatabase.m in Sources */,
 				AD97DC341B5F3F87003B864F /* QMHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,6 +27,11 @@
  */
 @property (weak , nonatomic) UIButton * nextMonthButton ;
 
+/**
+ *  分割线
+ */
+@property (weak , nonatomic) UIImageView * diliverView ;
+
 @end
 
 @implementation QMWeekView
@@ -49,18 +54,25 @@
 
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = [UIColor colorWithRed:244/255.0 green:245/255.0 blue:246/255.0 alpha:1] ;
+        
         NSArray * dataSource = @[@"日" , @"一", @"二", @"三", @"四", @"五", @"六"] ;
         
         // 添加子控件
         // 添加左右两侧切换月份的控件
         UIButton * previousMonthButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
-        [previousMonthButton setTitle:@"<" forState:UIControlStateNormal] ;
+//        [previousMonthButton setTitle:@"<" forState:UIControlStateNormal] ;
+        [previousMonthButton setImageEdgeInsets:UIEdgeInsetsMake(QM_SCALE_HEIGHT(0), QM_SCALE_WIDTH(22), 0, 0)] ;
+        [previousMonthButton setImage:[UIImage imageNamed:@"button_left"] forState:UIControlStateNormal] ;
+        previousMonthButton.imageView.contentMode = UIViewContentModeLeft ;
         [previousMonthButton addTarget:self action:@selector(changeMonthButtonTouch:) forControlEvents:UIControlEventTouchUpInside] ;
         [self addSubview:previousMonthButton] ;
         self.previousMonthButton = previousMonthButton ;
         
         UIButton * nextMonthButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
-        [nextMonthButton setTitle:@">" forState:UIControlStateNormal] ;
+        nextMonthButton.imageView.contentMode = UIViewContentModeRight ;
+        [nextMonthButton setImage:[UIImage imageNamed:@"button_right"] forState:UIControlStateNormal] ;
+        [nextMonthButton setImageEdgeInsets:UIEdgeInsetsMake(QM_SCALE_HEIGHT(0), 0, 0, QM_SCALE_WIDTH(22))] ;
         [nextMonthButton addTarget:self action:@selector(changeMonthButtonTouch:) forControlEvents:UIControlEventTouchUpInside] ;
         [self addSubview:nextMonthButton] ;
         self.nextMonthButton = nextMonthButton ;
@@ -68,6 +80,8 @@
         
         // 显示当前月
         UILabel * monthLabel = [[UILabel alloc] init] ;
+        monthLabel.font = [UIFont systemFontOfSize:20] ;
+        monthLabel.textColor = [UIColor colorWithColorString:@"5fcdda"] ;
         monthLabel.textAlignment = NSTextAlignmentCenter ;
         [self addSubview:monthLabel] ;
         self.monthLabel = monthLabel ;
@@ -77,12 +91,21 @@
         NSMutableArray * weekdays = [NSMutableArray array] ;
         for (NSInteger i = 0 ; i < 7; i++) {
             UILabel * weekday = [[UILabel alloc] init] ;
+            weekday.font = [UIFont systemFontOfSize:12] ;
             weekday.text = dataSource[i] ;
             weekday.textAlignment = NSTextAlignmentCenter ;
+            if (i == 0 || i == 6) {
+                weekday.textColor = [UIColor lightGrayColor] ;
+            }
             [self addSubview:weekday] ;
             [weekdays addObject:weekday] ;
         }
         self.weekdays = weekdays ;
+        
+        UIImageView * diliverView = [[UIImageView alloc] init] ;
+        diliverView.image = [UIImage imageNamed:@"first_diliver_line"] ;
+        [self addSubview:diliverView] ;
+        self.diliverView = diliverView ;
         
         
     }
@@ -111,29 +134,29 @@
     CGFloat monthX = 0 ;
     CGFloat monthY = 0 ;
     CGFloat monthW = self.frame.size.width ;
-    CGFloat monthH = self.frame.size.height * 0.5 ;
+    CGFloat monthH = QM_SCALE_HEIGHT(55) ;
     self.monthLabel.frame = CGRectMake(monthX, monthY, monthW, monthH) ;
 //    self.monthLabel.backgroundColor = [UIColor redColor] ;
     
     // 切换月份button的frame
     CGFloat previousX = 0 ;
     CGFloat previousY = monthY ;
-    CGFloat previousW = monthH ;
+    CGFloat previousW = QM_SCALE_WIDTH(50) ;
     CGFloat previousH = monthH ;
     self.previousMonthButton.frame = CGRectMake(previousX, previousY, previousW, previousH) ;
-    self.previousMonthButton.backgroundColor = [UIColor redColor] ;
+//    self.previousMonthButton.backgroundColor = [UIColor redColor] ;
     
-    CGFloat nextW = monthH ;
+    CGFloat nextW = QM_SCALE_WIDTH(50) ;
     CGFloat nextH = monthH ;
     CGFloat nextX = self.frame.size.width - nextW ;
     CGFloat nextY = monthY ;
     self.nextMonthButton.frame = CGRectMake(nextX, nextY, nextW, nextH) ;
-    self.nextMonthButton.backgroundColor = [UIColor greenColor] ;
+//    self.nextMonthButton.backgroundColor = [UIColor greenColor] ;
     
     // 设置每个label的布局情况
     CGFloat labelY = CGRectGetMaxY(self.monthLabel.frame) ;
     CGFloat labelW = self.frame.size.width / self.weekdays.count ;
-    CGFloat labelH = self.frame.size.height * 0.5 ;
+    CGFloat labelH = QM_SCALE_WIDTH(20) - 1 ;
     
     NSInteger i = 0 ;
     for (UILabel * label in self.weekdays) {
@@ -141,6 +164,14 @@
         label.frame = CGRectMake(labelX, labelY, labelW, labelH) ;
 //        label.backgroundColor = [UIColor greenColor] ;
     }
+    
+    // 分割线
+    CGFloat diliverW = self.frame.size.width ;
+    CGFloat diliverH = 1 ;
+    CGFloat diliverX = 0 ;
+    CGFloat diliverY = self.frame.size.height - diliverH ;
+    self.diliverView.frame = CGRectMake(diliverX, diliverY, diliverW, diliverH) ;
+    
 }
 
 @end

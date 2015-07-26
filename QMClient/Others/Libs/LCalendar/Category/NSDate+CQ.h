@@ -77,4 +77,26 @@
  */
 - (NSString *) timeInDate ;
 
+
+/**
+ *  日期中的年
+ *
+ *  @return 日期中的年
+ */
+- (NSInteger) yearForDate ;
+
+/**
+ *  日期中的月
+ *
+ *  @return 日期中的月
+ */
+- (NSInteger) monthForDate ;
+
+/**
+ *  日期中的天
+ *
+ *  @return 日期中的天
+ */
+- (NSInteger) dayForDate ;
+
 @end

@@ -14,11 +14,17 @@
 
 #ifdef __OBJC__
 
+#import "UIColor+CQ.h"
+
 
 
 #define QM_USERDEFAULT [NSUserDefaults standardUserDefaults]
 #define QM_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define QM_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define QM_SCALE_HEIGHT(a) (a * QM_SCREEN_HEIGHT / 667)
+#define QM_SCALE_WIDTH(a) (a * QM_SCREEN_WIDTH / 375)
+
 
 #define QM_GETLOGINSTATUS [QM_USERDEFAULT boolForKey:QM_USERDEFAULT_ISLOGIN]
 
@@ -28,6 +34,19 @@
 
 #define QMLog NSLog
 
+
+/**********数据库相关定义**********/
+// 数据库地址
+#define QM_USERDEFAULTS_DATABASEPATH @"databasePath"
+//// 数据库的表是否存在
+//#define QM_USERDEFAULTS_APPOINTMENTEXIST @"appointmentTable"
+// 预约表名
+#define QM_USERDEFAULTS_APPOINTTABLE @"appointment"
+// 预约表是否存在标记
+#define QM_USERDEFAULTS_APPOINTEXIST @"appointmentIsExist"
+
+
+/**********数据库相关定义**********/
 
 #endif
 

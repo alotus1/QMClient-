@@ -176,6 +176,7 @@
         }] ;
         
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain] ;
+        tableView.rowHeight = QM_SCALE_HEIGHT(50) ;
         tableView.delegate = self ;
         tableView.dataSource = self ;
         tableView.tableHeaderView = calendar ;
@@ -259,6 +260,8 @@
 #pragma mark - UITableView代理方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    NSLog(@"%@" , self.dayAppointments[indexPath.row]) ;
     // 选择这个时间后可以进行预约,让控制器发送预约请求
     if (self.sendAppointmentRequest) {
@@ -269,7 +272,7 @@
         if (appointmentHour.hourStatus == QMAppointmentHourStatusAvailable) {
 #warning 可以预约的状态,这里会调用预约接口
             type = QMAppointmentViewSendAppointRequestTypeAppoint ;
-        } else if (appointmentHour.hourStatus == QMAppointmentHourStatusAlreadyAppointed) {
+        } else if (appointmentHour.hourStatus == QMAppointmentHourStatusAlreadyAppointedByMe) {
 #warning 用户已经预约的情况,这里会取消预约
             type = QMAppointmentViewSendAppointRequestTypeCancel ;
         }

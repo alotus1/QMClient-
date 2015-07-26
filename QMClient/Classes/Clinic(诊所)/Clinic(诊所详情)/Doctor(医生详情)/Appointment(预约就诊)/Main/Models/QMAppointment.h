@@ -15,22 +15,33 @@
 @interface QMAppointment : NSObject
 
 /**
- *  表示当天日期
+ *  预约"日"
  */
-@property (copy , nonatomic) NSString * day ;
+@property (assign , nonatomic) NSInteger day ;
 /**
- *  表示当天医生的状态
+ *  预约"月"
  */
-@property (copy , nonatomic) NSString * status ;
+@property (assign , nonatomic) NSInteger month ;
 /**
- *  医生可以预约的起始时间
+ *  预约"年"
  */
-@property (copy , nonatomic) NSString * startTime ;
+@property (assign , nonatomic) NSInteger year ;
 /**
- *  医生可以预约的结束时间
+ *  预约时间段
  */
-@property (copy , nonatomic) NSString * endTime ;
+@property (assign , nonatomic) NSInteger appointHour ;
+/**
+ *  预约编号
+ */
+@property (assign , nonatomic) NSInteger identity ;
 
+/**
+ *  预约的医生id
+ */
+@property (copy , nonatomic) NSString * doctorId ;
 
+- (instancetype)initWithDict : (NSDictionary *) dict ;
++ (instancetype) appointmentWithDict : (NSDictionary *) dict ;
+//+ (instancetype) appointmentWithId : (NSInteger) identity year : (NSInteger) year month : (NSInteger) month day : (NSInteger) day appointHour : (NSInteger) appointHour ;
 
 @end
