@@ -20,6 +20,9 @@
 // 头部的高度
 #define QM_HEADERHEIGHT QM_SCALE_HEIGHT(75)
 
+
+#define QM_NOTIFICATION_CALENDARRELOAD @"calendarReload"
+
 @interface CustomCalendar () <UICollectionViewDelegateFlowLayout , UICollectionViewDataSource>
 
 /**
@@ -130,10 +133,20 @@
 
         [self settingData] ;
         
+        NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
+        [notificationCenter addObserver:self selector:@selector(calendarReload) name:QM_NOTIFICATION_CALENDARRELOAD object:nil] ;
+        
         
     }
     
     return self ;
+}
+
+- (void) calendarReload {
+
+    // 1.遍历数据源,与预约时间做比对
+    
+    // 2.刷新colletionView
 }
 
 /**

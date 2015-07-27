@@ -404,9 +404,6 @@
             QMLog(@"取消预约失败") ;
         }
         
- /       /**
-         *  <#Description#>
-         */
         
         
         QMLog(@"jsonDict %@" , jsonDict) ;
@@ -500,7 +497,7 @@
         }
         
         NSArray * datas = [jsonDict valueForKey:@"data"] ;
-        NSLog(@"%@" , datas) ;
+//        NSLog(@"%@" , datas) ;
         
         NSMutableArray * objs = [NSMutableArray array] ;
         for (NSDictionary * dict in datas) {
