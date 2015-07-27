@@ -39,6 +39,8 @@ typedef NS_ENUM(NSUInteger, QMAppointmentDayStatus) {
 @property (assign , nonatomic) QMAppointmentDayStatus day_status ;
 
 
+
+
 - (instancetype)initWithDict : (NSDictionary *) dict ;
 + (instancetype) appointmentDayWithDict : (NSDictionary *) dict ;
 

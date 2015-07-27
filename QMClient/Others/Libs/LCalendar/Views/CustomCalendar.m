@@ -21,7 +21,7 @@
 #define QM_HEADERHEIGHT QM_SCALE_HEIGHT(75)
 
 
-#define QM_NOTIFICATION_CALENDARRELOAD @"calendarReload"
+#define QM_NOTIFICATION_RELOADCALENDAR @"calendarViewReloadData"
 
 @interface CustomCalendar () <UICollectionViewDelegateFlowLayout , UICollectionViewDataSource>
 
@@ -134,7 +134,7 @@
         [self settingData] ;
         
         NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
-        [notificationCenter addObserver:self selector:@selector(calendarReload) name:QM_NOTIFICATION_CALENDARRELOAD object:nil] ;
+        [notificationCenter addObserver:self selector:@selector(calendarReload) name:QM_NOTIFICATION_RELOADCALENDAR object:nil] ;
         
         
     }
@@ -144,10 +144,18 @@
 
 - (void) calendarReload {
 
-    // 1.遍历数据源,与预约时间做比对
-    
+    // 1.遍历数据源calendar,更改选中状态
+    for (QMCalendar * calendar in self.dataSource) {
+        if ([calendar.date isEqualToDate:[QMUser defaultUser].appointedDate]) {
+            calendar.isSelectedDay = YES ;
+        } else
+            calendar.isSelectedDay = NO ;
+    }
     // 2.刷新colletionView
+    [self.calendarView reloadData] ;
 }
+
+
 
 /**
  *  初始化一些必须要用到的数据,当天日期,日历等等
@@ -218,6 +226,8 @@
     for (NSInteger index = 0; index < dayOfCurrentMonth; index++) {
         QMCalendar * calendar = [[QMCalendar alloc] init] ;
         calendar.day = index + 1 ;
+        
+
         // 判断是否是当天,如果是当天isCurrentDay就标记为YES
         if ([self isEqualToCurrentDate:components] && components.day == index + 1) {
             calendar.isSelectedDay = YES ;
@@ -226,9 +236,20 @@
         } else {
             calendar.isSelectedDay = NO ;
         }
-//        components.day = calendar.day ;
-//        NSDate * date = [self.gregorianCalendar dateFromComponents:components] ;
-//        components = [self.gregorianCalendar components:self.calendarUnit fromDate:date] ;
+    
+        
+//        NSDateComponents * currentDayComponents = [self.gregorianCalendar components:self.calendarUnit fromDate:self.currentDate] ;
+//        currentDayComponents.day = calendar.day ;
+        components.day = calendar.day ;
+        NSDate * date = [self.gregorianCalendar dateFromComponents:components] ;
+        calendar.date = [date currentZoneDate] ;
+        NSLog(@"calendar %@" , calendar.date) ;
+        components = [self.gregorianCalendar components:self.calendarUnit fromDate:date] ;
+        
+        
+        // 标记是否是预约的日期
+        calendar.isAppointedDay = [[QMUser defaultUser].appointedDate isEqualToDateWithDateComponents:components] ;
+        
         // 设置日期显示的字体颜色
         calendar.dayColor = (components.weekday == 1 || components.weekday == 7) ? [UIColor colorWithColorString:@"c0c0c0"] : [UIColor colorWithColorString:@"000000"] ;
         [dataSource addObject:calendar] ;
@@ -371,8 +392,9 @@
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     QMCalendarCell * cell = (QMCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath] ;
+    
     //    NSLog(@"cell %p" , cell) ;
-    NSNotificationCenter * noti = [NSNotificationCenter defaultCenter] ;
+//    NSNotificationCenter * noti = [NSNotificationCenter defaultCenter] ;
     if (![indexPath isEqual:self.selectedIndexPath]) {
 
 //        QMLog(@"pre %p %d" , self.selectedCell ,self.selectedCell.calendar.isSelectedDay) ;
