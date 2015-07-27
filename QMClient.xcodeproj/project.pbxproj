@@ -25,7 +25,6 @@
 		AD7897111B622E5A004FEF84 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7897101B622E5A004FEF84 /* libsqlite3.0.dylib */; };
 		AD7897171B622EFE004FEF84 /* QMSandBox.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7897161B622EFE004FEF84 /* QMSandBox.m */; };
 		AD78971B1B62303F004FEF84 /* QMDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD78971A1B62303F004FEF84 /* QMDataBaseManager.m */; };
-		AD948AB51B661C0F00F6EEC9 /* QMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD948AB41B661C0F00F6EEC9 /* QMUser.m */; };
 		AD97DBEB1B5F2BB7003B864F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBEA1B5F2BB7003B864F /* main.m */; };
 		AD97DBFF1B5F2BB7003B864F /* QMClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DBFE1B5F2BB7003B864F /* QMClientTests.m */; };
 		AD97DC211B5F3A24003B864F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC1B1B5F3A24003B864F /* AppDelegate.m */; };
@@ -113,8 +112,6 @@
 		AD7897161B622EFE004FEF84 /* QMSandBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSandBox.m; sourceTree = "<group>"; };
 		AD7897191B62303F004FEF84 /* QMDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMDataBaseManager.h; sourceTree = "<group>"; };
 		AD78971A1B62303F004FEF84 /* QMDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMDataBaseManager.m; sourceTree = "<group>"; };
-		AD948AB31B661C0F00F6EEC9 /* QMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUser.h; sourceTree = "<group>"; };
-		AD948AB41B661C0F00F6EEC9 /* QMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUser.m; sourceTree = "<group>"; };
 		AD97DBE51B5F2BB7003B864F /* QMClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD97DBE91B5F2BB7003B864F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD97DBEA1B5F2BB7003B864F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -428,8 +425,6 @@
 		AD97DC131B5F3A24003B864F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AD948AB31B661C0F00F6EEC9 /* QMUser.h */,
-				AD948AB41B661C0F00F6EEC9 /* QMUser.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -954,7 +949,6 @@
 				AD97DC981B5F6851003B864F /* MASLayoutConstraint.m in Sources */,
 				AD97DC9C1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				AD97DC971B5F6851003B864F /* MASConstraintMaker.m in Sources */,
-				AD948AB51B661C0F00F6EEC9 /* QMUser.m in Sources */,
 				AD97DD0D1B5F6D1E003B864F /* QMClinicViewController.m in Sources */,
 				AD97DC3A1B5F3FF3003B864F /* QMMeViewController.m in Sources */,
 				AD97DD2C1B5F9A33003B864F /* QMAppointment.m in Sources */,

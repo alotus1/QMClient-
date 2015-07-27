@@ -12,8 +12,8 @@
 @class QMAppointmentHour ;
 
 #define QM_NOTIFICATION_RELOADDATA @"appointmentViewReloadData"
+#define QM_NOTIFICATION_CALENDARRELOAD @"calendarReload"
 
-#define QM_NOTIFICATION_RELOADCALENDAR @"calendarViewReloadData"
 
 typedef NS_ENUM(NSUInteger, QMAppointmentViewSendAppointRequestType) {
     /**
