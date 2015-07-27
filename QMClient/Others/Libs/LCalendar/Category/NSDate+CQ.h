@@ -99,4 +99,13 @@
  */
 - (NSInteger) dayForDate ;
 
+/**
+ *  判断两个日期是否相等
+ *
+ *  @param dateComponents 日期组合
+ *
+ *  @return 返回是否相等
+ */
+- (BOOL)isEqualToDateWithDateComponents:(NSDateComponents *)dateComponents ;
+
 @end

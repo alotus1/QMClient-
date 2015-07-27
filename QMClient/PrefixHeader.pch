@@ -16,6 +16,8 @@
 
 #import "UIColor+CQ.h"
 
+#import "QMUser.h"
+
 
 
 #define QM_USERDEFAULT [NSUserDefaults standardUserDefaults]
@@ -44,6 +46,9 @@
 #define QM_USERDEFAULTS_APPOINTTABLE @"appointment"
 // 预约表是否存在标记
 #define QM_USERDEFAULTS_APPOINTEXIST @"appointmentIsExist"
+
+// 用户当前预约的日期
+#define QM_USERDEFAULTS_APPOINTEDDATE @"appointedDate"
 
 
 /**********数据库相关定义**********/

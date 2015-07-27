@@ -159,9 +159,9 @@
 #warning 这里获取到的日期不是正确的日期
 //            NSLog(@"%@" , date) ;
             // 月份更改了之后需要通知控制器 , 进行新的网络请求,请求新的一个月的预约数据
-            if (self.changeMonthBlock) {
-
-                self.changeMonthBlock(date) ;
+            if (viewTmp.changeMonthBlock) {
+                viewTmp.selectedDate = date ;
+                viewTmp.changeMonthBlock(date) ;
             }
         }] ;
         
@@ -263,7 +263,11 @@
     // 2.创建cell
     QMDayAppointmentCell * cell = [QMDayAppointmentCell dayAppointmentCell:tableView andIndexPath:indexPath] ;
     [cell setCancelAppointmentBlock:^(NSIndexPath * indexPath) {
-        self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , QMAppointmentViewSendAppointRequestTypeCancel) ;
+        if (self.sendAppointmentRequest) {
+            
+            self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , QMAppointmentViewSendAppointRequestTypeCancel) ;
+            
+        }
     }] ;
     // 3.传递模型数据
     cell.appointmentHour = appointmentHour ;

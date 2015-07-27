@@ -41,6 +41,9 @@
     self.window.rootViewController = navVc ;
     */
     
+    // 创建用户单例,保存当前登录的用户信息
+    QMUser * user = [QMUser defaultUser] ;
+    user.phoneNumber = @"1" ;
     
     [QM_USERDEFAULT setBool:NO forKey:QM_USERDEFAULT_ISLOGIN] ;
     

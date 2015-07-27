@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, QMAppointmentHourStatus) {
 @property (copy , nonatomic) NSString * startTime ;
 
 /**
- *  用户预约医生的日期
+ *  用户预约医生的日期和时间
  */
 @property (strong , nonatomic) NSDate * appointmentDate ;
 
