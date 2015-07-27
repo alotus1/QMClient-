@@ -35,10 +35,6 @@
  */
 @property (weak , nonatomic) UIImageView * diliverView ;
 
-/**
- *  标注为当前日期的背景圆圈
- */
-@property (weak , nonatomic) UIView * circleBackView ;
 
 
 
@@ -50,13 +46,19 @@
 
     _appointmentDay = appointmentDay ;
     
+
     // 1.将状态信息显示出来
     if (appointmentDay.day_status == QMAppointmentDayStatusEnable) {
         self.stateLabel.text = QM_STRING_AVAILABLE ;
+        [self.dayButton setImage:[UIImage imageNamed:@"xy"] forState:UIControlStateNormal] ;
     } else {
     
         self.stateLabel.text = QM_STRING_UNAVAILABLE ;
+        [self.dayButton setImage:[UIImage imageNamed:@"hxy"] forState:UIControlStateNormal] ;
     }
+
+    
+    [self changeCellStyle] ;
 }
 
 /**
@@ -66,8 +68,6 @@
 
     _calendar = calendar ;
     
-    // 将背景图片移除,为免cell复用的时候出现问题
-    [self.circleBackView removeFromSuperview] ;
     
     if (calendar.day == -1) {
         self.backgroundView = nil ;
@@ -98,8 +98,7 @@
     [self.dayButton setTitleColor:calendar.dayColor forState:UIControlStateNormal] ;
 
     [self changeCellStyle] ;
-    
-    
+
     
     [self setNeedsLayout] ;
 
@@ -115,13 +114,18 @@
     if (self.calendar.isSelectedDay) {
         
         // 选中状态设置背景颜色
-        self.dayButton.backgroundColor = [UIColor grayColor] ;
+        [self.dayButton setBackgroundImage:[UIImage imageNamed:@"day_back"] forState:UIControlStateNormal] ;
         [self.dayButton setImage:nil forState:UIControlStateNormal] ;
         [self.dayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         
     } else {
-        self.dayButton.backgroundColor = [UIColor clearColor] ;
-        [self.dayButton setImage:[UIImage imageNamed:@"star"] forState:UIControlStateNormal] ;
+        
+        [self.dayButton setBackgroundImage:nil forState:UIControlStateNormal] ;
+        if (self.appointmentDay.day_status == QMAppointmentDayStatusEnable) {
+            [self.dayButton setImage:[UIImage imageNamed:@"xy"] forState:UIControlStateNormal] ;
+        } else {
+            [self.dayButton setImage:[UIImage imageNamed:@"hxy"] forState:UIControlStateNormal] ;
+        }
         [self.dayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal] ;
         
     }

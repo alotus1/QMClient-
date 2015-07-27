@@ -176,7 +176,7 @@
         }] ;
         
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain] ;
-        tableView.rowHeight = QM_SCALE_HEIGHT(50) ;
+        tableView.rowHeight = QM_SCALE_HEIGHT(55) ;
         tableView.delegate = self ;
         tableView.dataSource = self ;
         tableView.tableHeaderView = calendar ;
@@ -185,6 +185,9 @@
         [self addSubview:tableView] ;
         self.tableView = tableView ;
         
+        NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
+        [notificationCenter addObserver:self selector:@selector(reloadData) name:QM_NOTIFICATION_RELOADDATA object:nil] ;
+        
         
         [self setupTime] ;
         
@@ -192,6 +195,14 @@
 
     }
     return self ;
+}
+
+/**
+ *  通知tableView刷新数据
+ */
+- (void) reloadData {
+    
+    [self.tableView reloadData] ;
 }
 
 
@@ -250,7 +261,10 @@
      */
     
     // 2.创建cell
-    QMDayAppointmentCell * cell = [QMDayAppointmentCell dayAppointmentCell:tableView] ;
+    QMDayAppointmentCell * cell = [QMDayAppointmentCell dayAppointmentCell:tableView andIndexPath:indexPath] ;
+    [cell setCancelAppointmentBlock:^(NSIndexPath * indexPath) {
+        self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , QMAppointmentViewSendAppointRequestTypeCancel) ;
+    }] ;
     // 3.传递模型数据
     cell.appointmentHour = appointmentHour ;
     
@@ -260,6 +274,10 @@
 #pragma mark - UITableView代理方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    QMDayAppointmentCell * selectedCell = (QMDayAppointmentCell *)[tableView cellForRowAtIndexPath:indexPath] ;
+    if (selectedCell.appointmentHour.hourStatus == QMAppointmentHourStatusAlreadyAppointedByMe) {
+        return ;
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    NSLog(@"%@" , self.dayAppointments[indexPath.row]) ;
@@ -279,6 +297,11 @@
         self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , type) ;
     }
 }
+
+//- (void) cancelAppointment {
+//
+//    self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , QMAppointmentViewSendAppointRequestTypeCancel) ;
+//}
 
 
 

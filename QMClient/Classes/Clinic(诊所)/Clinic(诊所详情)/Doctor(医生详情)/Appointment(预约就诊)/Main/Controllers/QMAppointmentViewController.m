@@ -214,6 +214,7 @@
         [vc sendRequestForHoursAppointmentDataWithDate : date] ;
     }] ;
     
+    // 发送预约请求信息
     [appointmentView setSendAppointmentRequest:^(QMAppointmentHour *appointmentHour , NSDate * selectedDate , QMAppointmentViewSendAppointRequestType requestType) {
         
         // 这里将开始的时间与日期拼接一下
@@ -355,9 +356,14 @@
             // 在这里将这次预约的信息添加到数据库中
 //#warning 这里要查看返回的是什么键
             self.appointment.identity = [dataDict[@"id"] integerValue] ;
+            // 预约成功后更改预约的状态为该用户已经预约
+            self.appointmentHour.hourStatus = QMAppointmentHourStatusAlreadyAppointedByMe ;
             // 将数据存到数据库中
             [QMDataBaseManager insertModel:self.appointment inDatabase:[[NSUserDefaults standardUserDefaults] valueForKey:QM_USERDEFAULTS_DATABASEPATH] andTable:QM_USERDEFAULTS_APPOINTTABLE] ;
-            // 刷新表格状态,将该行改成已经预约
+            // 通知tableView刷新表格状态,将该行改成已经预约
+            NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
+            [notificationCenter postNotificationName:QM_NOTIFICATION_RELOADDATA object:nil] ;
+
         }
         QMLog(@"%@" , jsonDict) ;
         
@@ -387,6 +393,16 @@
             NSLog(@"jsonError %@" , error) ;
         }
         
+        if ([jsonDict[@"code"] integerValue] == 1000) {
+            
+            QMLog(@"取消预约成功") ;
+            // 从网络重新请求数据,刷新当天每个时段最新的预约信息
+            [self sendRequestForHoursAppointmentDataWithDate:self.appointmentHour.appointmentDate] ;
+        } else {
+        
+            
+            QMLog(@"取消预约失败") ;
+        }
         
         
         QMLog(@"jsonDict %@" , jsonDict) ;
@@ -403,7 +419,7 @@
  */
 - (void) sendRequestForHoursAppointmentDataWithDate : (NSDate *) date {
     
-    QMLog(@"请求%@ 日期下的预约信息   " , date) ;
+//    QMLog(@"请求%@ 日期下的预约信息   " , date) ;
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager] ;
     //此处设置后返回的默认是NSData的数据
@@ -436,7 +452,7 @@
             
             QMAppointmentHour * appointmentHour = [QMAppointmentHour appointmentHourWithDict:dict] ;
             
-            if (appointmentHour.hourStatus == QMAppointmentHourStatusRest) {
+            if (appointmentHour.hourStatus == QMAppointmentHourStatusRest || appointmentHour.hourStatus == QMAppointmentHourStatusUnavilable || appointmentHour.hourStatus == QMAppointmentHourStatusAlreadyAppointedByOthers) {
                 continue ;
             }
             appointmentHour.startTime = [self.dateFormatter stringFromDate:[NSDate timeWithNumber:[appointmentHour.hour integerValue]]] ;
@@ -463,12 +479,15 @@
 - (void) sendRequestForDaysAppointmentDataWithDate : (NSDate *) date {
 
     
-//    QMLog(@"请求医生 %@ 月的预约信息" , date) ;
+    QMLog(@"请求医生 %@ 月的预约信息" , date) ;
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager] ;
     //此处设置后返回的默认是NSData的数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [manager GET:QM_URL_MONTHAPPOINTEDDATA parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString * urlString = [NSString stringWithFormat:QM_URL_MONTHAPPOINTEDDATA , [date yearForDate] , [date monthForDate] , [date dayForDate]] ;
+    NSLog(@"%@ "  , urlString) ;
+    
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError * error ;
         NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error] ;
@@ -477,6 +496,7 @@
         }
         
         NSArray * datas = [jsonDict valueForKey:@"data"] ;
+        NSLog(@"%@" , datas) ;
         
         NSMutableArray * objs = [NSMutableArray array] ;
         for (NSDictionary * dict in datas) {

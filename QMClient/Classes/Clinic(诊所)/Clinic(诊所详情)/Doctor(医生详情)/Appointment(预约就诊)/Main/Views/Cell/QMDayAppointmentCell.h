@@ -15,12 +15,19 @@
  */
 @interface QMDayAppointmentCell : UITableViewCell
 
-+ (instancetype) dayAppointmentCell : (UITableView *) tableView ;
+//+ (instancetype) dayAppointmentCell : (UITableView *) tableView ;
 
 + (instancetype) dayAppointmentCell : (UITableView *) tableView andIndexPath : (NSIndexPath *) indexPath ;
 /**
  *  当前时间段的数据模型
  */
 @property (strong , nonatomic) QMAppointmentHour * appointmentHour ;
+
+/**
+ *  当前cell的indexPath
+ */
+@property (strong , nonatomic) NSIndexPath * indexPath ;
+
+@property (copy , nonatomic) void(^cancelAppointmentBlock)(NSIndexPath * indexPath) ;
 
 @end
