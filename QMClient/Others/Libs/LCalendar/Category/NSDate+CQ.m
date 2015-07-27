@@ -144,18 +144,4 @@
     return components.day ;
 }
 
-
-- (BOOL)isEqualToDateWithDateComponents:(NSDateComponents *)dateComponents {
-
-    NSDateComponents * selfDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self] ;
-    
-    return (dateComponents.year == selfDateComponents.year && dateComponents.month == selfDateComponents.month && dateComponents.day == selfDateComponents.day) ;
-    
-}
-
-
-
-
-
-
 @end

@@ -43,11 +43,11 @@
 /**
  *  在数据库表中删除模型数据
  *
- *  @param model        要删除预约id
+ *  @param model        要删除的模型
  *  @param databasePath 数据库的路径
  *  @param tableName    表名
  */
-+ (void) deleteModel : (NSInteger) appointID inDataBase : (NSString *) databasePath andTable : (NSString *) tableName ;
++ (void) deleteModel : (id) model inDataBase : (NSString *) databasePath andTable : (NSString *) tableName ;
 
 /**
  *  获得数据库表单中的全部数据
