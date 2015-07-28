@@ -23,7 +23,7 @@
     UINavigationBar * navBar = [UINavigationBar appearance] ;
     
     // 设置背景颜色
-    NSString * bgImage = @"NavBar64" ;
+    NSString * bgImage = @"nav_back" ;
     [navBar setBackgroundImage:[UIImage imageNamed:bgImage] forBarMetrics:UIBarMetricsDefault] ;
     
     NSDictionary * attrs = @{NSForegroundColorAttributeName : [UIColor whiteColor] ,

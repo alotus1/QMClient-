@@ -13,4 +13,12 @@
 
 + (instancetype) registerAndLoginView ;
 
+- (void) loadGif ;
+
+
+/**
+ *  当浏览按钮按下之后,通知控制器进行跳转
+ */
+@property (copy , nonatomic) void(^browseBlock)() ;
+
 @end

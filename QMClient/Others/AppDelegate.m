@@ -37,8 +37,8 @@
 
     // 创建登录\注册界面
     QMRegisterAndLoginController * rlVc = [[QMRegisterAndLoginController alloc] init] ;
-    UINavigationController * navVc = [[UINavigationController alloc] initWithRootViewController:rlVc] ;
-    self.window.rootViewController = navVc ;
+//    UINavigationController * navVc = [[UINavigationController alloc] initWithRootViewController:rlVc] ;
+    self.window.rootViewController = rlVc ;
 
     
     
@@ -46,6 +46,9 @@
     
     QMUser * user = [QMUser defaultUser] ;
     user.phoneNumber = @"1" ;
+    
+    // 更改状态栏的样式
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent ;
     
     
 

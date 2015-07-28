@@ -59,7 +59,6 @@
 		AD97DC221B5F3A24003B864F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD97DC1C1B5F3A24003B864F /* LaunchScreen.xib */; };
 		AD97DC231B5F3A24003B864F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD97DC1E1B5F3A24003B864F /* Images.xcassets */; };
 		AD97DC2C1B5F3C15003B864F /* QMTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC2B1B5F3C15003B864F /* QMTabbarController.m */; };
-		AD97DC2E1B5F3DF3003B864F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD97DC2D1B5F3DF3003B864F /* Info.plist */; };
 		AD97DC311B5F3E51003B864F /* QMRegisterAndLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC301B5F3E51003B864F /* QMRegisterAndLoginController.m */; };
 		AD97DC341B5F3F87003B864F /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC331B5F3F87003B864F /* QMHomeViewController.m */; };
 		AD97DC3A1B5F3FF3003B864F /* QMMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97DC391B5F3FF3003B864F /* QMMeViewController.m */; };
@@ -182,7 +181,6 @@
 		AD97DC1E1B5F3A24003B864F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AD97DC2A1B5F3C15003B864F /* QMTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTabbarController.h; sourceTree = "<group>"; };
 		AD97DC2B1B5F3C15003B864F /* QMTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMTabbarController.m; sourceTree = "<group>"; };
-		AD97DC2D1B5F3DF3003B864F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD97DC2F1B5F3E51003B864F /* QMRegisterAndLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMRegisterAndLoginController.h; sourceTree = "<group>"; };
 		AD97DC301B5F3E51003B864F /* QMRegisterAndLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMRegisterAndLoginController.m; sourceTree = "<group>"; };
 		AD97DC321B5F3F87003B864F /* QMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMHomeViewController.h; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 		AD97DBE81B5F2BB7003B864F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AD97DC2D1B5F3DF3003B864F /* Info.plist */,
 				AD97DBE91B5F2BB7003B864F /* Info.plist */,
 				AD97DBEA1B5F2BB7003B864F /* main.m */,
 				AD97DC3B1B5F40BD003B864F /* PrefixHeader.pch */,
@@ -1047,7 +1044,6 @@
 				AD719E961B676A970058BDFD /* 1@2x.png in Resources */,
 				AD719E9D1B676A970058BDFD /* 2@2x.png in Resources */,
 				AD719E8D1B676A970058BDFD /* 11@2x.png in Resources */,
-				AD97DC2E1B5F3DF3003B864F /* Info.plist in Resources */,
 				AD719EA11B676A970058BDFD /* 6@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

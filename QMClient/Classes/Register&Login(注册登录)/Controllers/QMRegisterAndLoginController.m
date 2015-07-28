@@ -25,19 +25,68 @@
     
     self.title = @"登录" ;
     
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeContactAdd] ;
-    button.center = CGPointMake(100, 100) ;
-    [button addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside] ;
-    [self.view addSubview:button] ;
+    // 添加通知监听 , 监听键盘的弹出
+    NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
+    [notificationCenter addObserver:self selector:@selector(showKeyboard:) name:UIKeyboardWillShowNotification object:nil] ;
+    [notificationCenter addObserver:self selector:@selector(hiddenKeyBoard:) name:UIKeyboardWillHideNotification object:nil] ;
+    
+    
+    __weak typeof(self) vc = self ;
+    [self.registerView setBrowseBlock:^{
+        
+        [vc browse] ;
+    }] ;
     
     
 }
 
+/**
+ *  更改注册界面的frame
+ */
+- (void) showKeyboard : (NSNotification *) notification {
+
+//    NSLog(@"%@" , notification) ;
+    CGRect keyBoardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] ;
+    CGRect frame = self.registerView.frame ;
+    frame.origin.y = - keyBoardFrame.size.height ;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.registerView.frame = frame ;
+    }] ;
+    
+}
+
+- (void) hiddenKeyBoard : (NSNotification *) notification {
+
+//    CGRect keyBoardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] ;
+    CGRect frame = self.registerView.frame ;
+    frame.origin.y = 0 ;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.registerView.frame = frame ;
+    }] ;
+
+}
+
 - (void)loadView {
 
+    [super loadView] ;
+    
+    
     QMRegisterAndLoginView * registerView = [QMRegisterAndLoginView registerAndLoginView] ;
-    self.view = registerView ;
+    registerView.frame = self.view.bounds ;
+    [self.view addSubview:registerView] ;
     self.registerView = registerView ;
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated] ;
+    
+    [self.registerView loadGif] ;
 }
 
 /**
@@ -45,25 +94,38 @@
  */
 - (void) login {
 
-    /*
-    // 1.在这里发送登录的网络请求,验证用户的登录密码等等
-    [self dismissViewControllerAnimated:YES completion:^{
     
-    }] ;
-    */
-  
+}
+
+/**
+ *  浏览
+ */
+- (void) browse {
+    
+    /*
+     // 1.在这里发送登录的网络请求,验证用户的登录密码等等
+     [self dismissViewControllerAnimated:YES completion:^{
+     
+     }] ;
+     */
+    
     // 2.验证成功则跳转到主页
     QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
     
     [self presentViewController:tabbarController animated:YES completion:^{
-    
+        
         AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate ;
         appDelegate.window.rootViewController = tabbarController ;
         // 在这里要保证登录界面销毁
         [self removeFromParentViewController] ;
-
+        
     }] ;
     
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.view endEditing:YES] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +133,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#warning 这里内存泄露
 - (void)dealloc {
     
     NSLog(@"dealloc") ;

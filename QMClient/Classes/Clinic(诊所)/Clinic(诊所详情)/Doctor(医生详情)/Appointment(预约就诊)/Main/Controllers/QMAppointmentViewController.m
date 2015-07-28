@@ -227,6 +227,7 @@
             
             // 取消预约
             [vc showAlertViewWithRequestType:QMAppointmentViewSendAppointRequestTypeCancel] ;
+            return ;
         }
         
         // 这里将开始的时间与日期拼接一下

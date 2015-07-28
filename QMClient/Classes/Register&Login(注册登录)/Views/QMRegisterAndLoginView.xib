@@ -11,41 +11,19 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYg-LF-Tc1" userLabel="animationView">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYg-LF-Tc1" userLabel="animationView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="304"/>
-                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="354" id="NkF-8a-uZ2"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="center" minimumFontSize="17" background="sjh" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-6P-cJE" userLabel="phoneTextField">
-                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="0uZ-mL-md2"/>
-                        <constraint firstAttribute="width" constant="240" id="8m1-gW-UEU"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="0uZ-mL-md2"/>
-                            <exclude reference="8m1-gW-UEU"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="0uZ-mL-md2"/>
-                            <include reference="8m1-gW-UEU"/>
-                        </mask>
-                    </variation>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="yzm" translatesAutoresizingMaskIntoConstraints="NO" id="5AB-GB-QgG" userLabel="yzmTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="center" minimumFontSize="17" background="yzm" translatesAutoresizingMaskIntoConstraints="NO" id="5AB-GB-QgG" userLabel="yzmTextField">
                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="hvf-JS-FYs"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="hvf-JS-FYs"/>
@@ -56,17 +34,28 @@
                             <include reference="hvf-JS-FYs"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="7NI-qU-dYV"/>
+                    </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZu-pC-acd" userLabel="hqyzmButton">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZu-pC-acd" userLabel="hqyzmButton">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <state key="normal" title="获取验证码" backgroundImage="hqyzm">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="disabled" backgroundImage="hqyzm"/>
+                    <state key="highlighted" backgroundImage="hqyzm_selected"/>
+                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="202" y="401" width="118" height="44"/>
+                    </variation>
+                    <connections>
+                        <action selector="getVerifiedNumber:" destination="iN0-l3-epB" eventType="touchUpInside" id="YL2-lb-IGc"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bA-9e-WCk">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bA-9e-WCk">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="05J-DL-gP7"/>
@@ -93,7 +82,61 @@
                             <include reference="sEN-UL-Bx0"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="loginButtonTouch:" destination="iN0-l3-epB" eventType="touchUpInside" id="wR8-cl-J4R"/>
+                    </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH2-KY-UCq" userLabel="browseButton">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="5pj-U4-ndE"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="cq6-TQ-23x"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="14"/>
+                    <state key="normal" title="浏览一下">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5pj-U4-ndE"/>
+                            <exclude reference="cq6-TQ-23x"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="5pj-U4-ndE"/>
+                            <include reference="cq6-TQ-23x"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="browseButtonTouch:" destination="iN0-l3-epB" eventType="touchUpInside" id="c83-jY-zR6"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="center" minimumFontSize="18" background="sjh" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-6P-cJE" userLabel="phoneTextField">
+                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="0uZ-mL-md2"/>
+                        <constraint firstAttribute="width" constant="240" id="8m1-gW-UEU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0uZ-mL-md2"/>
+                            <exclude reference="8m1-gW-UEU"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="80" y="351" width="240" height="44"/>
+                        <mask key="constraints">
+                            <include reference="0uZ-mL-md2"/>
+                            <include reference="8m1-gW-UEU"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="7ML-hD-CG5"/>
+                    </connections>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -101,6 +144,7 @@
                 <constraint firstItem="5AB-GB-QgG" firstAttribute="height" secondItem="wZu-pC-acd" secondAttribute="height" id="E7N-jA-bSe"/>
                 <constraint firstAttribute="centerX" secondItem="2bA-9e-WCk" secondAttribute="centerX" id="GJM-fq-fPN"/>
                 <constraint firstItem="nYg-LF-Tc1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LmD-K9-xRY"/>
+                <constraint firstAttribute="centerX" secondItem="GH2-KY-UCq" secondAttribute="centerX" id="O01-2a-aZ9"/>
                 <constraint firstAttribute="trailing" secondItem="nYg-LF-Tc1" secondAttribute="trailing" id="PmU-iw-vZ4"/>
                 <constraint firstItem="5AB-GB-QgG" firstAttribute="top" secondItem="wZu-pC-acd" secondAttribute="top" id="U6c-Le-6ge"/>
                 <constraint firstItem="EgC-6P-cJE" firstAttribute="trailing" secondItem="wZu-pC-acd" secondAttribute="trailing" id="Uvm-pz-2YE"/>
@@ -111,13 +155,15 @@
                 <constraint firstItem="EgC-6P-cJE" firstAttribute="leading" secondItem="5AB-GB-QgG" secondAttribute="leading" id="qGc-gL-hIL"/>
                 <constraint firstItem="wZu-pC-acd" firstAttribute="leading" secondItem="5AB-GB-QgG" secondAttribute="trailing" constant="4" id="s5m-1F-hbw"/>
                 <constraint firstItem="nYg-LF-Tc1" firstAttribute="bottom" secondItem="EgC-6P-cJE" secondAttribute="top" id="u6F-xA-F4C"/>
+                <constraint firstAttribute="bottom" secondItem="GH2-KY-UCq" secondAttribute="bottom" constant="10" id="zFd-z9-VlN"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="EgC-6P-cJE"/>
                     <exclude reference="5AB-GB-QgG"/>
                     <exclude reference="wZu-pC-acd"/>
                     <exclude reference="2bA-9e-WCk"/>
+                    <exclude reference="GH2-KY-UCq"/>
+                    <exclude reference="EgC-6P-cJE"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="u6F-xA-F4C"/>
@@ -131,14 +177,17 @@
                     <exclude reference="s5m-1F-hbw"/>
                     <exclude reference="GJM-fq-fPN"/>
                     <exclude reference="mWe-n9-32j"/>
+                    <exclude reference="O01-2a-aZ9"/>
+                    <exclude reference="zFd-z9-VlN"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
-                    <include reference="EgC-6P-cJE"/>
                     <include reference="5AB-GB-QgG"/>
                     <include reference="wZu-pC-acd"/>
                     <include reference="2bA-9e-WCk"/>
+                    <include reference="GH2-KY-UCq"/>
+                    <include reference="EgC-6P-cJE"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="u6F-xA-F4C"/>
@@ -152,15 +201,23 @@
                     <include reference="s5m-1F-hbw"/>
                     <include reference="GJM-fq-fPN"/>
                     <include reference="mWe-n9-32j"/>
+                    <include reference="O01-2a-aZ9"/>
+                    <include reference="zFd-z9-VlN"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="animationViewHeight" destination="NkF-8a-uZ2" id="az8-op-nUS"/>
+                <outlet property="browseButton" destination="GH2-KY-UCq" id="NlX-BN-FFu"/>
+                <outlet property="gifImageView" destination="nYg-LF-Tc1" id="j0J-GV-edI"/>
+                <outlet property="loginButton" destination="2bA-9e-WCk" id="EL8-xH-QRL"/>
                 <outlet property="loginButtonHeight" destination="05J-DL-gP7" id="AQ2-0A-3qP"/>
                 <outlet property="loginButtonTop" destination="mWe-n9-32j" id="Teo-bm-DUE"/>
                 <outlet property="loginButtonWidth" destination="sEN-UL-Bx0" id="4y4-Ba-xfz"/>
+                <outlet property="phoneTextField" destination="EgC-6P-cJE" id="SL3-0D-Fv0"/>
                 <outlet property="phoneTextFieldHeight" destination="0uZ-mL-md2" id="07v-YW-Cx3"/>
                 <outlet property="phoneTextFieldWidth" destination="8m1-gW-UEU" id="7BP-Yh-mRn"/>
+                <outlet property="verifedTextField" destination="5AB-GB-QgG" id="Acd-Hb-mcm"/>
+                <outlet property="verifiedButton" destination="wZu-pC-acd" id="YYM-fW-QNw"/>
                 <outlet property="yzmTextFieldHeight" destination="hvf-JS-FYs" id="fkN-cU-xcN"/>
             </connections>
         </view>
@@ -170,6 +227,7 @@
         <image name="button_login_disable" width="123" height="46"/>
         <image name="button_login_selected" width="123" height="46"/>
         <image name="hqyzm" width="118" height="43"/>
+        <image name="hqyzm_selected" width="118" height="43"/>
         <image name="sjh" width="240" height="43"/>
         <image name="yzm" width="118" height="43"/>
     </resources>
