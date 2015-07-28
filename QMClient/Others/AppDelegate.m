@@ -63,7 +63,7 @@
  *  从后台数据库同步当前用户的预约信息
  */
 - (void) syncAppointmentInfo {
-
+#warning 这里从后台同步用户的预约信息后,将用户当前有效的预约信息取出,存放在用户的appointedDate中,默认以后每次从QMUser中取出的都是用户当前有效的预约信息
     
 }
 - (void) createDatabase {

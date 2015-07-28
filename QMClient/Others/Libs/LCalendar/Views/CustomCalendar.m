@@ -259,6 +259,7 @@
     }
     self.dataSource = dataSource ;
     
+    [self calendarReload] ;
 
     [self.calendarView reloadData] ;
     

@@ -20,7 +20,9 @@
 }
 
 
-
+/**
+ *  用户的预约时间(set,get方法)
+ */
 @property (strong , nonatomic) NSDate * appointedDate ;
 
 /**
@@ -28,10 +30,6 @@
  */
 @property (copy , nonatomic) NSString * phoneNumber ;
 
-/**
- *  用户Id
- */
-//@property (copy , nonatomic) NSString * userId ;
 
 /**
  *  获得默认的用户
