@@ -159,8 +159,8 @@
 //            calendar.isSelectedDay = NO ;
             calendar.isAppointedDay = NO ;
         }
-        NSLog(@"%@" , [QMUser defaultUser].appointedDate) ;
-        NSLog(@"%@" , calendar) ;
+//        NSLog(@"%@" , [QMUser defaultUser].appointedDate) ;
+//        NSLog(@"%@" , calendar) ;
     }
     
     
@@ -242,7 +242,7 @@
         if ([self isEqualToCurrentDate:components] && components.day == index + 1) {
             calendar.isSelectedDay = YES ;
             self.selectedIndexPath = [NSIndexPath indexPathForItem:index + self.firstWeekdayOfMonth - 1 inSection:0] ;
-            NSLog(@"%ld" , self.selectedIndexPath.item) ;
+//            NSLog(@"%ld" , self.selectedIndexPath.item) ;
         } else {
             calendar.isSelectedDay = NO ;
         }

@@ -294,7 +294,10 @@
 #warning 用户已经预约的情况,这里会取消预约
             type = QMAppointmentViewSendAppointRequestTypeCancel ;
         }
-        self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , type) ;
+        if (self.sendAppointmentRequest) {
+            
+            self.sendAppointmentRequest(self.dayAppointments[indexPath.row] , self.selectedDate , type) ;
+        }
     }
 }
 

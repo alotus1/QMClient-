@@ -21,4 +21,9 @@
  */
 @property (copy , nonatomic) void(^browseBlock)() ;
 
+/**
+ *  登录block
+ */
+@property (copy , nonatomic) void(^loginBlock)(NSString * phoneNumber , NSString * verifiedNumber) ;
+
 @end

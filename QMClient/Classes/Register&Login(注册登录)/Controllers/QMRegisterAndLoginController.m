@@ -37,6 +37,11 @@
         [vc browse] ;
     }] ;
     
+    [self.registerView setLoginBlock:^(NSString *phoneNumber, NSString *verifiedNumber) {
+        
+        [vc login] ;
+    }] ;
+    
     
 }
 
@@ -57,9 +62,9 @@
     
 }
 
+
 - (void) hiddenKeyBoard : (NSNotification *) notification {
 
-//    CGRect keyBoardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] ;
     CGRect frame = self.registerView.frame ;
     frame.origin.y = 0 ;
     
@@ -94,6 +99,11 @@
  */
 - (void) login {
 
+    // 1.发送网络请求
+    
+    // 2.根据网络验证手机号和验证码是否合理
+    
+    // 3.登录,或者提示用户重新输入电话\验证码
     
 }
 
@@ -102,12 +112,7 @@
  */
 - (void) browse {
     
-    /*
-     // 1.在这里发送登录的网络请求,验证用户的登录密码等等
-     [self dismissViewControllerAnimated:YES completion:^{
-     
-     }] ;
-     */
+    __weak typeof(self) vc = self ;
     
     // 2.验证成功则跳转到主页
     QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
@@ -117,16 +122,13 @@
         AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate ;
         appDelegate.window.rootViewController = tabbarController ;
         // 在这里要保证登录界面销毁
-        [self removeFromParentViewController] ;
-        
+        [vc removeFromParentViewController] ;
     }] ;
     
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    [self.view endEditing:YES] ;
-}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

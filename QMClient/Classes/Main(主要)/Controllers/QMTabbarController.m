@@ -26,7 +26,6 @@
     
     
     
-    
     QMHomeViewController * homeVc = [[QMHomeViewController alloc] init] ;
     [self addChildViewController:homeVc title:@"主页" image:@"tabbar_home" selectedImage:@""] ;
     

@@ -222,6 +222,7 @@
     // 发送预约请求信息
     [appointmentView setSendAppointmentRequest:^(QMAppointmentHour *appointmentHour , NSDate * selectedDate , QMAppointmentViewSendAppointRequestType requestType) {
         
+        /*
         // 这里判断一下用户是否有有效的预约,如果有有效的预约就提醒用户先取消预约
         if ([QMUser defaultUser].appointedDate) {
             
@@ -229,6 +230,7 @@
             [vc showAlertViewWithRequestType:QMAppointmentViewSendAppointRequestTypeCancel] ;
             return ;
         }
+         */
         
         // 这里将开始的时间与日期拼接一下
         selectedDate = [NSDate dateWithDate:selectedDate time:appointmentHour.startTime] ;
@@ -446,7 +448,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     
-    QMAppointmentHour * appointmentHour = self.appointmentHour ;
+//    QMAppointmentHour * appointmentHour = self.appointmentHour ;
 //    NSInteger timeNumber = [appointmentHour.appointmentDate numberForCurrentDate] ;
     NSInteger year = [date yearForDate] ;
     NSInteger month = [date monthForDate] ;

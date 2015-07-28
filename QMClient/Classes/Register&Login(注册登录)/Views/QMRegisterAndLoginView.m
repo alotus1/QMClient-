@@ -8,9 +8,12 @@
 
 #import "QMRegisterAndLoginView.h"
 
+#import "MBProgressHUD+MJ.h"
+
 #import "MMPlaceHolder.h"
 
-#define QM_TIME_PERANIMATION 0.03
+#define QM_TIME_PERANIMATION 0.04
+#define QM_TIME_VERIFYDISABLE 20
 
 @interface QMRegisterAndLoginView () <UITextFieldDelegate>
 
@@ -127,7 +130,7 @@
     NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:@"浏览一下" attributes:attrDict] ;
     [self.browseButton setAttributedTitle:attrString forState:UIControlStateNormal] ;
     
-    self.time = 5 ;
+    self.time = QM_TIME_VERIFYDISABLE ;
     
 }
 
@@ -170,10 +173,10 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     
-    // 手机号为11位的时候才可以点击获取验证码
-    self.verifiedButton.enabled = self.phoneTextField.text.length >= 10 ;
+    // (手机号为11位&&计时器计时完成)的时候才可以点击获取验证码
+    self.verifiedButton.enabled = self.phoneTextField.text.length >= 10 && self.timer == nil ;
     // 两个都不为空,才可以点击登录
-    self.loginButton.enabled = (self.phoneTextField.text.length && self.verifedTextField.text.length) ;
+//    self.loginButton.enabled = (self.phoneTextField.text.length && self.verifedTextField.text.length) ;
     
 
     
@@ -191,16 +194,28 @@
 
 
 
-
+/**
+ *  获取验证码按钮点击
+ */
 - (IBAction)getVerifiedNumber:(UIButton *)sender {
+    
+    // 判断电话号码位数是否符合
+    if (self.phoneTextField.text.length != 11) {
+        
+        [MBProgressHUD showError:@"请输入正确的电话号码"] ;
+        return ;
+    }
     
     sender.enabled = NO ;
     
     [self setVerifiedButtonTitle] ;
     
+    [self stopTimer] ;
+    
     NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countTimer) userInfo:nil repeats:YES] ;
     self.timer = timer ;
 }
+
 
 /**
  *  更新验证码button的显示
@@ -216,14 +231,41 @@
     if (self.time >= 0) {
         [self setVerifiedButtonTitle] ;
     } else {
+        self.time = QM_TIME_VERIFYDISABLE ;
         [self.verifiedButton setTitle:@"获取验证码" forState:UIControlStateDisabled] ;
         self.verifiedButton.enabled = YES ;
-        [self.timer invalidate] ;
-        self.timer = nil ;
+        [self stopTimer] ;
     }
+}
+
+- (void) stopTimer {
+
+    [self.timer invalidate] ;
+    self.timer = nil ;
 }
 
 
 - (IBAction)loginButtonTouch:(UIButton *)sender {
+    
+    NSString * phoneNumber = self.phoneTextField.text ;
+    NSString * verifiedNumber = self.verifedTextField.text ;
+    if (!(phoneNumber.length == 11 && verifiedNumber.length == 5)) {
+        [MBProgressHUD showError:@"请输入正确的手机号和验证码"] ;
+        return ;
+    }
+    
+    if (self.loginBlock) {
+        self.loginBlock(phoneNumber , verifiedNumber) ;
+    }
+}
+
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    
+    if (CGRectContainsPoint(self.phoneTextField.frame, point) || CGRectContainsPoint(self.verifedTextField.frame, point)) {
+        return [super hitTest:point withEvent:event] ;
+    }
+    [self endEditing:YES] ;
+    return [super hitTest:point withEvent:event] ;
 }
 @end

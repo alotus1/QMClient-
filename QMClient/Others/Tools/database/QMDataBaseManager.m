@@ -205,7 +205,7 @@
     NSString * sql = [NSString stringWithFormat:@"SELECT  * FROM %@ ;" , tableName] ;
     
     // 执行sql语句
-    FMResultSet * resultSet = [database executeQuery:sql] ;
+//    FMResultSet * resultSet = [database executeQuery:sql] ;
     
     // 迭代获取里面的内容
 //    if ([tableName isEqualToString:GP_TABLENAME_LIKEGIFT]) {
