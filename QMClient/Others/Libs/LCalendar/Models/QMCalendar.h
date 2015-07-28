@@ -28,6 +28,14 @@
  */
 @property (strong , nonatomic) UIColor * dayColor ;
 
+/**
+ *  记录当前模型表示的日期
+ */
+@property (strong , nonatomic) NSDate * date ;
 
+/**
+ *  标记是否是预约当天
+ */
+@property (assign , nonatomic) BOOL isAppointedDay ;
 
 @end

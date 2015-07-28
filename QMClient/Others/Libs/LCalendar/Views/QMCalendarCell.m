@@ -50,11 +50,11 @@
     // 1.将状态信息显示出来
     if (appointmentDay.day_status == QMAppointmentDayStatusEnable) {
         self.stateLabel.text = QM_STRING_AVAILABLE ;
-        [self.dayButton setImage:[UIImage imageNamed:@"xy"] forState:UIControlStateNormal] ;
+//        [self.dayButton setImage:[UIImage imageNamed:@"xy"] forState:UIControlStateNormal] ;
     } else {
     
         self.stateLabel.text = QM_STRING_UNAVAILABLE ;
-        [self.dayButton setImage:[UIImage imageNamed:@"hxy"] forState:UIControlStateNormal] ;
+//        [self.dayButton setImage:[UIImage imageNamed:@"hxy"] forState:UIControlStateNormal] ;
     }
 
     
@@ -120,13 +120,18 @@
         
     } else {
         
+        [self.dayButton setTitleColor:self.calendar.dayColor forState:UIControlStateNormal] ;
         [self.dayButton setBackgroundImage:nil forState:UIControlStateNormal] ;
+        if (self.calendar.isAppointedDay) {
+            [self.dayButton setImage:[UIImage imageNamed:@"star"] forState:UIControlStateNormal] ;
+            return ;
+        }
+        
         if (self.appointmentDay.day_status == QMAppointmentDayStatusEnable) {
             [self.dayButton setImage:[UIImage imageNamed:@"xy"] forState:UIControlStateNormal] ;
         } else {
             [self.dayButton setImage:[UIImage imageNamed:@"hxy"] forState:UIControlStateNormal] ;
         }
-        [self.dayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal] ;
         
     }
 }

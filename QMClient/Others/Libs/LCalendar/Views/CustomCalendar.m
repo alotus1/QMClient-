@@ -145,8 +145,27 @@
 - (void) calendarReload {
 
     // 1.遍历数据源,与预约时间做比对
+#warning 为什么这里的calendar日期为nil
+    for (QMCalendar * calendar in self.dataSource) {
+//        NSLog(@"%@" , calendar) ;
+        if (calendar.day == -1) {
+            continue ;
+        }
+        if ([calendar.date isEqualToDateWithoutTime:[QMUser defaultUser].appointedDate]) {
+          
+//            calendar.isSelectedDay = YES ;
+            calendar.isAppointedDay = YES ;
+        } else {
+//            calendar.isSelectedDay = NO ;
+            calendar.isAppointedDay = NO ;
+        }
+        NSLog(@"%@" , [QMUser defaultUser].appointedDate) ;
+        NSLog(@"%@" , calendar) ;
+    }
+    
     
     // 2.刷新colletionView
+    [self.calendarView reloadData] ;
 }
 
 /**
@@ -217,6 +236,7 @@
     // cell内容为日期
     for (NSInteger index = 0; index < dayOfCurrentMonth; index++) {
         QMCalendar * calendar = [[QMCalendar alloc] init] ;
+        calendar.isAppointedDay = NO ;
         calendar.day = index + 1 ;
         // 判断是否是当天,如果是当天isCurrentDay就标记为YES
         if ([self isEqualToCurrentDate:components] && components.day == index + 1) {
@@ -226,11 +246,15 @@
         } else {
             calendar.isSelectedDay = NO ;
         }
-//        components.day = calendar.day ;
-//        NSDate * date = [self.gregorianCalendar dateFromComponents:components] ;
-//        components = [self.gregorianCalendar components:self.calendarUnit fromDate:date] ;
+        
+        NSDateComponents * currentComponents = [components copy] ;
+        currentComponents.day = calendar.day ;
+        NSDate * date = [self.gregorianCalendar dateFromComponents:currentComponents] ;
+        currentComponents = [self.gregorianCalendar components:self.calendarUnit fromDate:date] ;
+        calendar.date = [date currentZoneDate] ;
+        
         // 设置日期显示的字体颜色
-        calendar.dayColor = (components.weekday == 1 || components.weekday == 7) ? [UIColor colorWithColorString:@"c0c0c0"] : [UIColor colorWithColorString:@"000000"] ;
+        calendar.dayColor = (currentComponents.weekday == 1 || currentComponents.weekday == 7) ? [UIColor colorWithColorString:@"c0c0c0"] : [UIColor colorWithColorString:@"000000"] ;
         [dataSource addObject:calendar] ;
     }
     self.dataSource = dataSource ;
@@ -372,7 +396,7 @@
     
     QMCalendarCell * cell = (QMCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath] ;
     //    NSLog(@"cell %p" , cell) ;
-    NSNotificationCenter * noti = [NSNotificationCenter defaultCenter] ;
+//    NSNotificationCenter * noti = [NSNotificationCenter defaultCenter] ;
     if (![indexPath isEqual:self.selectedIndexPath]) {
 
 //        QMLog(@"pre %p %d" , self.selectedCell ,self.selectedCell.calendar.isSelectedDay) ;

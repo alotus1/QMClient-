@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD61F0DF1B6693C10026F0C8 /* QMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD61F0DE1B6693C10026F0C8 /* QMUser.m */; };
 		AD66A87B1B639BD3002F4234 /* UIColor+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = AD66A87A1B639BD3002F4234 /* UIColor+CQ.m */; };
 		AD7896F61B61E3BC004FEF84 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896E41B61E3BC004FEF84 /* AFHTTPRequestOperation.m */; };
 		AD7896F71B61E3BC004FEF84 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7896E61B61E3BC004FEF84 /* AFHTTPRequestOperationManager.m */; };
@@ -74,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD61F0DD1B6693C10026F0C8 /* QMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUser.h; sourceTree = "<group>"; };
+		AD61F0DE1B6693C10026F0C8 /* QMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUser.m; sourceTree = "<group>"; };
 		AD66A8791B639BD3002F4234 /* UIColor+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CQ.h"; sourceTree = "<group>"; };
 		AD66A87A1B639BD3002F4234 /* UIColor+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CQ.m"; sourceTree = "<group>"; };
 		AD7896E11B61E2F1004FEF84 /* RequestURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestURL.h; sourceTree = "<group>"; };
@@ -210,6 +213,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD61F0DC1B6693C10026F0C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AD61F0DD1B6693C10026F0C8 /* QMUser.h */,
+				AD61F0DE1B6693C10026F0C8 /* QMUser.m */,
+			);
+			name = Models;
+			path = Controllers/Models;
+			sourceTree = "<group>";
+		};
 		AD66A8781B639BBD002F4234 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,8 +417,8 @@
 		AD97DC111B5F3A24003B864F /* Main(主要) */ = {
 			isa = PBXGroup;
 			children = (
+				AD61F0DC1B6693C10026F0C8 /* Models */,
 				AD97DC121B5F3A24003B864F /* Controllers */,
-				AD97DC131B5F3A24003B864F /* Models */,
 				AD97DC141B5F3A24003B864F /* Views */,
 			);
 			path = "Main(主要)";
@@ -420,13 +433,6 @@
 				AD97DC2B1B5F3C15003B864F /* QMTabbarController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		AD97DC131B5F3A24003B864F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		AD97DC141B5F3A24003B864F /* Views */ = {
@@ -949,6 +955,7 @@
 				AD97DC981B5F6851003B864F /* MASLayoutConstraint.m in Sources */,
 				AD97DC9C1B5F6851003B864F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				AD97DC971B5F6851003B864F /* MASConstraintMaker.m in Sources */,
+				AD61F0DF1B6693C10026F0C8 /* QMUser.m in Sources */,
 				AD97DD0D1B5F6D1E003B864F /* QMClinicViewController.m in Sources */,
 				AD97DC3A1B5F3FF3003B864F /* QMMeViewController.m in Sources */,
 				AD97DD2C1B5F9A33003B864F /* QMAppointment.m in Sources */,

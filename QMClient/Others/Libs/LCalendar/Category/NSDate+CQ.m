@@ -144,4 +144,20 @@
     return components.day ;
 }
 
+
+/**
+ *  判断两个日期的年月日是否相同
+ *
+ *  @param otherDate 其他日期
+ *
+ *  @return 年月日是否相同
+ */
+- (BOOL) isEqualToDateWithoutTime :(NSDate *)otherDate {
+
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+    dateFormatter.dateFormat = @"yyyy-MM-dd" ;
+    
+    return [[dateFormatter stringFromDate:self] isEqualToString:[dateFormatter stringFromDate:otherDate]] ;
+}
+
 @end

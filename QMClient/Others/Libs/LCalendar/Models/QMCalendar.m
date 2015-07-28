@@ -10,6 +10,9 @@
 
 @implementation QMCalendar
 
-
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"date %@ day %ld , isSelectedDay %d", _date , _day , _isSelectedDay];
+}
 
 @end

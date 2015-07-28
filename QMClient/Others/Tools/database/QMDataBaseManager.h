@@ -47,7 +47,7 @@
  *  @param databasePath 数据库的路径
  *  @param tableName    表名
  */
-+ (void) deleteModel : (id) model inDataBase : (NSString *) databasePath andTable : (NSString *) tableName ;
++ (void) deleteModel : (NSInteger) appointId inDataBase : (NSString *) databasePath andTable : (NSString *) tableName ;
 
 /**
  *  获得数据库表单中的全部数据

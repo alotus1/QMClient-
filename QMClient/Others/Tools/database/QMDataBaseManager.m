@@ -154,7 +154,7 @@
  *  @param databasePath 数据库的路径
  *  @param tableName    表名
  */
-+ (void) deleteModel : (id) model inDataBase : (NSString *) databasePath andTable : (NSString *) tableName {
++ (void) deleteModel : (NSInteger) appointId inDataBase : (NSString *) databasePath andTable : (NSString *) tableName {
 
     FMDatabase * database = [FMDatabase databaseWithPath:databasePath] ;
     // 连接数据库
@@ -166,13 +166,7 @@
         return ;
     }
     
-    NSString * sql ;
-    // 拼接sql语句
-//    if ([tableName isEqualToString:GP_TABLENAME_LIKEGIFT]) {
-//        sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE url = '%@' ;" , GP_TABLENAME_LIKEGIFT ,[model url]] ;
-//    } else if ([tableName isEqualToString:GP_TABLENAME_STRATEGY]) {
-//        sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = '%@' ;" , GP_TABLENAME_STRATEGY ,[model identity]] ;
-//    }
+    NSString * sql = [NSString stringWithFormat:@"delete from appointment where id = %ld" , appointId] ;
     
     if ([database executeUpdate:sql]) {
         NSLog(@"删除成功") ;

@@ -314,8 +314,8 @@
         if (self.requestType == QMAppointmentViewSendAppointRequestTypeAppoint) {
             
             [self sendRequestAddAppointment] ;
-        } else if (self.requestType == QMAppointmentViewSendAppointRequestTypeCancel && [self canCancelAppointment]) {
-        
+        } else if (self.requestType == QMAppointmentViewSendAppointRequestTypeCancel) {// && [self canCancelAppointment]) {
+#warning 先将24小时之内不可以取消预约的条件去掉
             [self sendRequestCancelAppointment] ;
         }
         
@@ -333,7 +333,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer] ;
     
     
-    NSString * urlString = [NSString stringWithFormat:QM_URL_ADDAPPOINTMENT , self.appointment.year , self.appointment.month , self.appointment.day , self.appointment.appointHour] ;
+    NSString * urlString = [NSString stringWithFormat:QM_URL_ADDAPPOINTMENT , self.appointment.year , self.appointment.month , self.appointment.day , self.appointment.appointHour , [QMUser defaultUser].phoneNumber] ;
 //    NSString * urlString = [NSString stringWithFormat:QM_URL_CANCELAPPOINTMENT , (NSInteger)15] ;
 //    QMLog(@"%@" , urlString) ;
     
@@ -360,10 +360,11 @@
             self.appointmentHour.hourStatus = QMAppointmentHourStatusAlreadyAppointedByMe ;
             // 将数据存到数据库中
             [QMDataBaseManager insertModel:self.appointment inDatabase:[[NSUserDefaults standardUserDefaults] valueForKey:QM_USERDEFAULTS_DATABASEPATH] andTable:QM_USERDEFAULTS_APPOINTTABLE] ;
+            [QMUser defaultUser].appointedDate = self.appointmentHour.appointmentDate ;
             // 通知tableView刷新表格状态,将该行改成已经预约
             NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
             [notificationCenter postNotificationName:QM_NOTIFICATION_RELOADDATA object:nil] ;
-
+            [notificationCenter postNotificationName:QM_NOTIFICATION_CALENDARRELOAD object:nil] ;
         }
         QMLog(@"%@" , jsonDict) ;
         
@@ -382,7 +383,7 @@
     // 去数据库中查询预约id
     NSInteger appointId = [QMDataBaseManager selectAppointIdWithAppointment:self.appointment] ;
     
-    NSString * urlString = [NSString stringWithFormat:QM_URL_CANCELAPPOINTMENT , appointId] ;
+    NSString * urlString = [NSString stringWithFormat:QM_URL_CANCELAPPOINTMENT , appointId, [QMUser defaultUser].phoneNumber] ;
     NSLog(@"%@" , urlString) ;
     
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -398,6 +399,11 @@
             QMLog(@"取消预约成功") ;
             // 从网络重新请求数据,刷新当天每个时段最新的预约信息
             [self sendRequestForHoursAppointmentDataWithDate:self.appointmentHour.appointmentDate] ;
+            [QMDataBaseManager deleteModel:appointId inDataBase:[[NSUserDefaults standardUserDefaults] valueForKey:QM_USERDEFAULTS_DATABASEPATH] andTable:QM_USERDEFAULTS_APPOINTTABLE] ;
+            [QMUser defaultUser].appointedDate = nil ;
+            // 通知日历cell改变样式
+            NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter] ;
+            [notificationCenter postNotificationName:QM_NOTIFICATION_CALENDARRELOAD object:nil] ;
         } else {
         
             
@@ -433,7 +439,7 @@
     NSInteger month = [date monthForDate] ;
     NSInteger day = [date dayForDate] ;
     
-    NSString * urlString = [NSString stringWithFormat:QM_URL_DAYAPPOINTEDDATA , year , month , day] ;
+    NSString * urlString = [NSString stringWithFormat:QM_URL_DAYAPPOINTEDDATA , year , month , day, [QMUser defaultUser].phoneNumber] ;
 //    NSLog(@"%@" , urlString) ;
     
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -485,7 +491,7 @@
     //此处设置后返回的默认是NSData的数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSString * urlString = [NSString stringWithFormat:QM_URL_MONTHAPPOINTEDDATA , [date yearForDate] , [date monthForDate] , [date dayForDate]] ;
+    NSString * urlString = [NSString stringWithFormat:QM_URL_MONTHAPPOINTEDDATA , [date yearForDate] , [date monthForDate] , [date dayForDate], [QMUser defaultUser].phoneNumber] ;
     NSLog(@"%@ "  , urlString) ;
     
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {

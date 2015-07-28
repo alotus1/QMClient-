@@ -44,6 +44,9 @@
     
     [QM_USERDEFAULT setBool:NO forKey:QM_USERDEFAULT_ISLOGIN] ;
     
+    QMUser * user = [QMUser defaultUser] ;
+    user.phoneNumber = @"1" ;
+    
     
 
     [self.window makeKeyAndVisible] ;
