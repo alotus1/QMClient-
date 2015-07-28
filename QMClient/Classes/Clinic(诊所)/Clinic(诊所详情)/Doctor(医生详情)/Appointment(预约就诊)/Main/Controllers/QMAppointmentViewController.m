@@ -77,6 +77,11 @@
  */
 @property (assign , nonatomic) QMAppointmentViewSendAppointRequestType requestType ;
 
+/**
+ *  标记用户已经有了
+ */
+@property (assign , nonatomic) BOOL isAppointed ;
+
 
 @end
 
@@ -216,6 +221,13 @@
     
     // 发送预约请求信息
     [appointmentView setSendAppointmentRequest:^(QMAppointmentHour *appointmentHour , NSDate * selectedDate , QMAppointmentViewSendAppointRequestType requestType) {
+        
+        // 这里判断一下用户是否有有效的预约,如果有有效的预约就提醒用户先取消预约
+        if ([QMUser defaultUser].appointedDate) {
+            
+            // 取消预约
+            [vc showAlertViewWithRequestType:QMAppointmentViewSendAppointRequestTypeCancel] ;
+        }
         
         // 这里将开始的时间与日期拼接一下
         selectedDate = [NSDate dateWithDate:selectedDate time:appointmentHour.startTime] ;

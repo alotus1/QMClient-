@@ -114,7 +114,7 @@
     if (self.calendar.isSelectedDay) {
         
         // 选中状态设置背景颜色
-        [self.dayButton setBackgroundImage:[UIImage imageNamed:@"day_back"] forState:UIControlStateNormal] ;
+        [self.dayButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal] ;
         [self.dayButton setImage:nil forState:UIControlStateNormal] ;
         [self.dayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         
