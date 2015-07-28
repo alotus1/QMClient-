@@ -9,9 +9,12 @@
 #import "QMRegisterAndLoginController.h"
 
 #import "QMTabbarController.h"
+#import "QMRegisterAndLoginView.h"
 #import "AppDelegate.h"
 
 @interface QMRegisterAndLoginController ()
+
+@property (weak , nonatomic) QMRegisterAndLoginView * registerView ;
 
 @end
 
@@ -26,6 +29,15 @@
     button.center = CGPointMake(100, 100) ;
     [button addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside] ;
     [self.view addSubview:button] ;
+    
+    
+}
+
+- (void)loadView {
+
+    QMRegisterAndLoginView * registerView = [QMRegisterAndLoginView registerAndLoginView] ;
+    self.view = registerView ;
+    self.registerView = registerView ;
 }
 
 /**
@@ -33,12 +45,13 @@
  */
 - (void) login {
 
+    /*
     // 1.在这里发送登录的网络请求,验证用户的登录密码等等
     [self dismissViewControllerAnimated:YES completion:^{
     
     }] ;
-    
-    /*
+    */
+  
     // 2.验证成功则跳转到主页
     QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
     
@@ -50,8 +63,6 @@
         [self removeFromParentViewController] ;
 
     }] ;
-    */
-    
     
 }
 

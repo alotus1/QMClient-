@@ -31,6 +31,7 @@
 
 - (void) btnTouch {
     
+    /*
     // 如果用户未登录则弹出登录界面
     if (!QM_GETLOGINSTATUS) {
         
@@ -39,11 +40,11 @@
         [self presentViewController:navVc animated:YES completion:nil] ;
 
     }
-    
-    // 1.创建医生详情页面
+    */
+    // 1.创建预约页面
     QMAppointmentViewController * appointmentVc = [[QMAppointmentViewController alloc] init] ;
     
-    // 2.进入医生详情页面
+    // 2.进入预约页面
     [self.navigationController pushViewController:appointmentVc animated:YES] ;
 }
 

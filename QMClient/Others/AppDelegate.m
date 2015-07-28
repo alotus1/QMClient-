@@ -15,7 +15,7 @@
 
 #import "QMSandBox.h"
 
-//#import "QMRegisterAndLoginController.h"
+#import "QMRegisterAndLoginController.h"
 //#import "QMNavigationController.h"
 
 
@@ -31,15 +31,15 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] ;
     
-    QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
-    self.window.rootViewController = tabbarController ;
+//    QMTabbarController * tabbarController = [[QMTabbarController alloc] init] ;
+//    self.window.rootViewController = tabbarController ;
     
-    /*
+
     // 创建登录\注册界面
     QMRegisterAndLoginController * rlVc = [[QMRegisterAndLoginController alloc] init] ;
     UINavigationController * navVc = [[UINavigationController alloc] initWithRootViewController:rlVc] ;
     self.window.rootViewController = navVc ;
-    */
+
     
     
     [QM_USERDEFAULT setBool:NO forKey:QM_USERDEFAULT_ISLOGIN] ;
